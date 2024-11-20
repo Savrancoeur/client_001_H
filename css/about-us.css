@@ -3,42 +3,55 @@
 -----------------------------------------*/
 
 .about {
-  background: var(--about-bg-color);
+  background: #252629;
+  color: #f7f8f7;
 }
 
-.about-working-hours {
-  border-left: 2px solid;
-  padding-left: 3.5rem;
+.about h2 {
+  color: #f7f8f7;
 }
 
-.about-working-hours strong {
-  color: var(--white-color);
-  opacity: 0.85;
+.about p {
+  color: #ddd;
 }
 
 .team-thumb {
   position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.team-thumb img {
+  border-radius: 10px 10px 0 0;
+  filter: brightness(0.7);
 }
 
 .team-info {
-  background: var(--white-color);
-  border-radius: 0 0 2px 2px;
-  box-shadow: 6px 0 38px rgba(20, 20, 20, 0.1);
+  background: #2d2f33;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 6px 0 38px rgba(20, 20, 20, 0.2);
   padding: 20px;
   position: relative;
+  color: #f7f8f7;
+}
+
+.team-info h3 {
+  color: #f7f8f7;
 }
 
 .team-info span {
-  font-weight: var(--font-weight-light);
-  opacity: 0.85;
-}
-
-.team-info .social-icon {
-  position: absolute;
-  top: 10px;
-  right: 20px;
+  color: #bbb;
 }
 
 .team-info .social-icon li {
   display: block;
+}
+
+.team-info .social-icon li a {
+  color: #f7f8f7;
+}
+
+.team-info .social-icon li a:hover {
+  color: #a47800;
 }

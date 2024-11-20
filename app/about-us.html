@@ -24,84 +24,157 @@
   </head>
 
   <body>
-    <!-- ABOUT US -->
+    <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a href="./home.html" class="nav-link smoothScroll">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="./event-details.html" class="nav-link smoothScroll"
+                >Events</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="./about-us.html" class="nav-link smoothScroll"
+                >About Us</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="./contact-us.html" class="nav-link smoothScroll"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ml-auto d-flex align-items-center">
+            <li class="nav-item">
+              <a href="./login.html" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="./register.html" class="nav-link">Register</a>
+            </li>
+            <li class="nav-item">
+              <a href="./home.html" class="nav-link">
+                <img
+                  src="../public/images/auth/profile_icon.png"
+                  style="width: 30px"
+                  alt="Profile"
+                  class="profile-pic"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ABOUT US  -->
     <section class="about section" id="about">
       <div class="container">
         <div class="row">
-          <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-5 col-md-10 mx-auto col-12">
+          <!-- Club DESCRIPTION -->
+          <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-6 col-md-10 mx-auto col-12">
             <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">
-              Hello, we are Gymso
+              Welcome to AUS Sport Club!
             </h2>
 
             <p data-aos="fade-up" data-aos-delay="400">
-              You are NOT allowed to redistribute this HTML template
-              downloadable ZIP file on any template collection site. You are
-              allowed to use this template for your personal or business
-              websites.
+              At AUS Sport Club, we are dedicated to promoting fitness, health,
+              and sportsmanship in our community. Our mission is to provide a
+              supportive environment for individuals of all skill levels to
+              achieve their fitness goals. Whether you're a beginner or an
+              experienced athlete, we offer a variety of programs and activities
+              designed to help you succeed.
             </p>
 
             <p data-aos="fade-up" data-aos-delay="500">
-              If you have any question regarding
-              <a
-                rel="nofollow"
-                href="https://www.tooplate.com/view/2119-gymso-fitness"
-                target="_parent"
-                >Gymso Fitness HTML template</a
-              >, you can
-              <a
-                rel="nofollow"
-                href="https://www.tooplate.com/contact"
-                target="_parent"
-                >contact Tooplate</a
-              >
-              immediately. Thank you.
+              We believe in the power of teamwork, discipline, and perseverance.
+              Our values include inclusivity, respect, and a commitment to
+              excellence in every aspect of our training and community-building
+              efforts. Join us as we build a stronger, healthier future
+              together.
             </p>
           </div>
 
-          <div
-            class="ml-lg-auto col-lg-3 col-md-6 col-12"
-            data-aos="fade-up"
-            data-aos-delay="700"
-          >
-            <div class="team-thumb">
-              <img
-                src="../public/images/team/team-image.jpg"
-                class="img-fluid"
-                alt="Trainer"
-              />
-
-              <div class="team-info d-flex flex-column">
-                <h3>Mary Yan</h3>
-                <span>Yoga Instructor</span>
-
-                <ul class="social-icon mt-3">
-                  <li><a href="#" class="fa fa-twitter"></a></li>
-                  <li><a href="#" class="fa fa-instagram"></a></li>
-                </ul>
+          <!-- TEAM  -->
+          <div class="col-lg-6 col-md-12 mt-5" id="team">
+            <h3
+              class="text-center mb-4"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              Meet Our Team
+            </h3>
+            <div class="row">
+              <!-- TRAINER 1 -->
+              <div
+                class="col-md-6 col-12 mb-4"
+                data-aos="fade-up"
+                data-aos-delay="700"
+              >
+                <div class="team-thumb">
+                  <img
+                    src="../public/images/team/team-image.jpg"
+                    class="img-fluid"
+                    alt="Trainer"
+                  />
+                  <div class="team-info d-flex flex-column">
+                    <h3>Mary Yan</h3>
+                    <span>Yoga Instructor</span>
+                    <p>
+                      Mary specializes in yoga and mindfulness, helping members
+                      find balance and flexibility in their routines.
+                    </p>
+                    <ul class="social-icon mt-3">
+                      <li><a href="#" class="fa fa-twitter"></a></li>
+                      <li><a href="#" class="fa fa-instagram"></a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <div
-            class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12"
-            data-aos="fade-up"
-            data-aos-delay="800"
-          >
-            <div class="team-thumb">
-              <img
-                src="../public/images/team/team-image01.jpg"
-                class="img-fluid"
-                alt="Trainer"
-              />
-
-              <div class="team-info d-flex flex-column">
-                <h3>Catherina</h3>
-                <span>Body trainer</span>
-
-                <ul class="social-icon mt-3">
-                  <li><a href="#" class="fa fa-instagram"></a></li>
-                  <li><a href="#" class="fa fa-facebook"></a></li>
-                </ul>
+              <!-- TRAINER 2 -->
+              <div
+                class="col-md-6 col-12 mb-4"
+                data-aos="fade-up"
+                data-aos-delay="800"
+              >
+                <div class="team-thumb">
+                  <img
+                    src="../public/images/team/team-image01.jpg"
+                    class="img-fluid"
+                    alt="Trainer"
+                  />
+                  <div class="team-info d-flex flex-column">
+                    <h3>Catherina</h3>
+                    <span>Body Trainer</span>
+                    <p>
+                      Catherina is an expert in strength training, helping
+                      individuals build muscle, endurance, and confidence.
+                    </p>
+                    <ul class="social-icon mt-3">
+                      <li><a href="#" class="fa fa-instagram"></a></li>
+                      <li><a href="#" class="fa fa-facebook"></a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -263,6 +263,10 @@ a:focus {
   padding-top: 0;
 }
 
+.navbar .navbar-brand:hover {
+  color: var(--primary-color);
+}
+
 .nav-item .nav-link {
   display: block;
   color: var(--white-color);
@@ -275,10 +279,6 @@ a:focus {
 .nav-item .nav-link.active,
 .nav-item .nav-link:hover {
   color: var(--primary-color);
-}
-
-.navbar .social-icon li a {
-  color: var(--white-color);
 }
 
 .navbar-toggler {

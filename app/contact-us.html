@@ -24,6 +24,67 @@
   </head>
 
   <body>
+    <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a href="./home.html" class="nav-link smoothScroll">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="./event-details.html" class="nav-link smoothScroll"
+                >Events</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="./about-us.html" class="nav-link smoothScroll"
+                >About Us</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="./contact-us.html" class="nav-link smoothScroll"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ml-auto d-flex align-items-center">
+            <li class="nav-item">
+              <a href="./login.html" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="./register.html" class="nav-link">Register</a>
+            </li>
+            <li class="nav-item">
+              <a href="./home.html" class="nav-link">
+                <img
+                  src="../public/images/auth/profile_icon.png"
+                  style="width: 30px"
+                  alt="Profile"
+                  class="profile-pic"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <!-- CONTACT -->
     <section class="contact section" id="contact">
       <div class="container">
@@ -79,8 +140,8 @@
             </h2>
 
             <p data-aos="fade-up" data-aos-delay="800">
-              <i class="fa fa-map-marker mr-1"></i> 120-240 Rio de Janeiro -
-              State of Rio de Janeiro, Brazil
+              <i class="fa fa-map-marker mr-1"></i> 107th Street x 65th Street,
+              Mandalay, Myanmar
             </p>
             <!-- How to change your own map point
   1. Go to Google Maps
@@ -90,12 +151,13 @@
 -->
             <div class="google-map" data-aos="fade-up" data-aos-delay="900">
               <iframe
-                src="https://maps.google.com/maps?q=Av.+Lúcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="1920"
-                height="250"
-                frameborder="0"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.870262750139!2d96.10315237533713!3d21.939538479947586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30cb6d00437fc6d5%3A0x7b39ed9fcb701778!2sAuston%20Mandalay%20Campus!5e0!3m2!1sen!2smm!4v1732124295133!5m2!1sen!2smm"
+                width="600"
+                height="450"
                 style="border: 0"
                 allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>

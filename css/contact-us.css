@@ -2,6 +2,11 @@
    CONTACT              
 -----------------------------------------*/
 
+.contact {
+  background-color: var(--link-color);
+  color: var(--white-color);
+}
+
 .webform input,
 button#submit-button {
   height: calc(2.25rem + 20px);
@@ -41,4 +46,12 @@ button#submit-button:hover {
 
 .google-map iframe {
   width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+#submit-button {
+  border-radius: 10px !important;
 }
