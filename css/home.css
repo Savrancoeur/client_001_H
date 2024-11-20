@@ -1,0 +1,33 @@
+/*---------------------------------------
+   HOME              
+-----------------------------------------*/
+
+#feature .container input:focus,
+#feature .container select:focus {
+  outline: none;
+  border: 2px solid #c60a11;
+  box-shadow: 0 0 5px rgb(164, 120, 0, 0.7);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#feature .container h3 {
+  color: #f7f8f7;
+  font-size: 20px;
+}
+
+.upcoming-events .card img {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 3px solid var(--brown-color);
+}
+
+.upcoming-events .card .btn:hover {
+  background-color: var(--brown-color);
+  color: var(--white-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.upcoming-events {
+  background-color: var(--dark-color);
+  padding: 3rem 0;
+}
