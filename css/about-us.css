@@ -1,0 +1,57 @@
+/*---------------------------------------
+    ABOUT US  
+-----------------------------------------*/
+
+.about {
+  background: #252629;
+  color: #f7f8f7;
+}
+
+.about h2 {
+  color: #f7f8f7;
+}
+
+.about p {
+  color: #ddd;
+}
+
+.team-thumb {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.team-thumb img {
+  border-radius: 10px 10px 0 0;
+  filter: brightness(0.7);
+}
+
+.team-info {
+  background: #2d2f33;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 6px 0 38px rgba(20, 20, 20, 0.2);
+  padding: 20px;
+  position: relative;
+  color: #f7f8f7;
+}
+
+.team-info h3 {
+  color: #f7f8f7;
+}
+
+.team-info span {
+  color: #bbb;
+}
+
+.team-info .social-icon li {
+  display: block;
+}
+
+.team-info .social-icon li a {
+  color: #f7f8f7;
+}
+
+.team-info .social-icon li a:hover {
+  color: #a47800;
+}
