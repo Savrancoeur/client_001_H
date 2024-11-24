@@ -1,57 +1,73 @@
 /*---------------------------------------
-   CONTACT              
+   CONTACT US             
 -----------------------------------------*/
 
-.contact {
-  background-color: var(--link-color);
-  color: var(--white-color);
+.contact.section {
+  background-color: #090806;
+  padding: 60px 0;
 }
 
-.webform input,
-button#submit-button {
-  height: calc(2.25rem + 20px);
+.contact h2,
+.contact p {
+  color: #f7f8f7;
 }
 
-.form-control {
-  border-radius: var(--border-radius-small);
-  margin: 1.3rem 0;
+.contact h2 span {
+  color: #a47800;
 }
 
-.form-control:focus {
-  box-shadow: none;
-  border-color: var(--dark-color);
+.contact .form-control {
+  background-color: #252629;
+  color: #f7f8f7;
+  border: 1px solid #5d5d5d;
 }
 
-button#submit-button {
-  background: var(--dark-color);
-  border-color: transparent;
-  color: var(--white-color);
-  cursor: pointer;
+.contact .form-control::placeholder {
+  color: #959494;
+}
+
+.contact .btn.custom-btn {
+  background-color: #a47800;
+  color: #f7f8f7;
+  border: none;
   transition: all 0.3s ease;
 }
 
-button#submit-button:hover {
-  background: var(--primary-color);
+.contact .btn.custom-btn:hover {
+  background-color: #c60a11;
+  color: #f7f8f7;
 }
 
-.contact h2 + p {
-  max-width: 90%;
+.contact .fa-map-marker {
+  color: #a47800;
 }
 
-.google-map {
-  border-top: 1px solid #efebeb;
-  margin-top: 2.5rem;
-  padding-top: 2.5rem;
-}
-
-.google-map iframe {
+.contact .google-map iframe {
   width: 100%;
+  height: 450px;
+  border: 0;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea,
-#submit-button {
-  border-radius: 10px !important;
+.contact .google-map {
+  margin-top: 20px;
+}
+
+.contact .contact-form {
+  margin-bottom: 30px;
+}
+
+.contact .contact-form .form-control {
+  margin-bottom: 20px;
+}
+
+.contact .contact-form button[type="submit"] {
+  background-color: #a47800;
+  color: #f7f8f7;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.contact .contact-form button[type="submit"]:hover {
+  background-color: #c60a11;
+  color: #f7f8f7;
 }

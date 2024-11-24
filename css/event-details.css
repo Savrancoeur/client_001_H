@@ -1,99 +1,420 @@
 /*---------------------------------------
-   CLASS               
+  HERO
 -----------------------------------------*/
 
-.class-info {
-  background: var(--white-color);
-  box-shadow: 6px 0 38px rgba(20, 20, 20, 0.1);
-  border-radius: 0 0 2px 2px;
-  padding: 1rem 2rem;
+.hero {
+  background-image: url("../public/images/hero-bg.jpg");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  min-height: 100vh;
   position: relative;
-}
 
-.class-info img {
-  border-radius: 2px 2px 0 0;
-}
-
-.class-info strong {
-  color: var(--gray-color);
-}
-
-.class-price {
-  background: var(--primary-color);
-  border-radius: var(--border-radius-large);
-  color: var(--white-color);
-  font-weight: var(--font-weight-bold);
-  display: block;
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  line-height: 3.5rem;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
   text-align: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.hero .bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.hero-text h6 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.custom-btn {
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive Adjustments for Hero */
+@media (max-width: 1199px) {
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+  .hero-text h6 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .hero-text h6 {
+    font-size: 1rem;
+  }
+  .hero {
+    padding: 0 30px; /* More space on mobile */
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text h6 {
+    font-size: 1rem;
+  }
+
+  .hero {
+    height: auto; /* Adjust height for smaller screens */
+    padding: 50px 20px;
+  }
+
+  .hero-text h1,
+  .hero-text h6 {
+    margin: 10px 0; /* Adjust margins for smaller screens */
+  }
+
+  .hero-text {
+    padding-bottom: 20px; /* Ensure there's space for buttons */
+  }
+
+  .custom-btn {
+    width: 100%; /* Buttons take full width on smaller screens */
+    margin-top: 10px;
+  }
+}
+
+/* For very small mobile screens */
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text h6 {
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 40px 20px;
+  }
+
+  .hero-text h1 {
+    margin-top: 10px;
+  }
+
+  .custom-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
 
 /*---------------------------------------
-   SCHEDULE             
+  FEATURES
 -----------------------------------------*/
 
-.schedule {
-  background: var(--dark-color);
+.feature {
+  background-color: #1a1a1a;
+  padding: 60px 0;
+  color: #ffffff;
 }
 
-.schedule-table {
-  display: table;
-  border: 0;
-  text-align: center;
+.feature-image-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+  height: 100%;
 }
 
-.schedule-table strong,
-.schedule-table span {
+.feature-image {
+  width: 100%;
+  height: auto;
   display: block;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.feature-image-wrapper:hover .feature-image {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.hover-grow {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.hover-grow:hover {
+  transform: scale(1.05);
+  background-color: #ff6f61;
+}
+
+/* Flex Column Layout for Content Section */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Responsive Adjustments for Features */
+@media (max-width: 991px) {
+  .feature .row {
+    flex-direction: column;
+    text-align: center;
+  }
+  .feature-image-wrapper {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .feature {
+    padding: 60px 15px; /* Padding on both sides for smaller screens */
+  }
+}
+
+/* Add Padding on Small and Medium Screens */
+@media (max-width: 991px) {
+  .feature {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+/*---------------------------------------
+  EVENT-DETAILS    
+-----------------------------------------*/
+
+.event-details {
+  padding: 80px 0;
+  background-color: #0f0f0f;
+  color: #f5f5f5;
+}
+
+.event-details .section-title {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.event-details .section-subtitle {
+  font-size: 1.1rem;
+  color: #b3b3b3;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.detail-item {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 10px;
   text-align: center;
-}
-
-.schedule-table strong {
-  color: var(--white-color);
-}
-
-.schedule-table span {
-  color: var(--gray-color);
-}
-
-.schedule-table span,
-.schedule-table small {
-  font-size: var(--menu-font-size);
-  text-transform: uppercase;
-}
-
-.schedule-table small {
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
   position: relative;
-  top: 10px;
+  overflow: hidden;
 }
 
-.table .thead-light th,
-.schedule-table tr td:first-child {
-  background: var(--primary-color);
-  border: 1px solid #212122;
-  color: var(--white-color);
+.detail-item:hover {
+  transform: translateY(-5px);
+  background-color: #292929;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
 }
 
-.schedule-table .thead-light th {
-  border-bottom: 0;
-  text-transform: uppercase;
+.detail-item::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255, 111, 97, 0.3), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+  z-index: 0;
 }
 
-.table-bordered td,
-.table-bordered th {
-  border: 1px solid #212122;
+.detail-item:hover::after {
+  opacity: 1;
 }
 
-.table-bordered td {
-  padding-bottom: 22px;
+.detail-item .detail-icon {
+  font-size: 2.5rem;
+  color: #ff6f61;
+  margin-bottom: 15px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  z-index: 1;
+  position: relative;
 }
 
-.table td,
-.table th {
-  padding: 1rem;
+.detail-item:hover .detail-icon {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.detail-title {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+  z-index: 1;
+  position: relative;
+}
+
+.detail-text {
+  font-size: 1rem;
+  color: #cfcfcf;
+  z-index: 1;
+  position: relative;
+}
+
+/* Call-to-Action Button */
+.event-details .cta .btn {
+  font-size: 1.1rem;
+  padding: 15px 30px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-details .cta .btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.event-details .cta .btn:hover::after {
+  left: 100%;
+}
+
+.event-details .cta .btn:hover {
+  background-color: #e05a50;
+  transform: scale(1.05);
+}
+
+/* Add Padding on Small and Medium Screens */
+@media (max-width: 991px) {
+  .event-details {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+/*---------------------------------------
+  NEWS SECTION               
+-----------------------------------------*/
+.news {
+  padding: 80px 0;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.news .section-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.news .section-subtitle {
+  font-size: 1.1rem;
+  color: #b0b0b0;
+  margin-bottom: 40px;
+}
+
+.news-card {
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.news-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+
+.news-card-img:hover {
+  filter: brightness(1);
+}
+
+.news-card-body {
+  padding: 15px;
+}
+
+.news-card-title {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.news-card-text {
+  font-size: 1rem;
+  color: #cfcfcf;
+  margin-bottom: 15px;
+}
+
+.news-card .btn {
+  font-size: 0.9rem;
+  padding: 8px 15px;
+  border-radius: 4px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.news-card .btn:hover {
+  background-color: #e05a50;
+}
+
+/* Add Padding on Small and Medium Screens */
+@media (max-width: 991px) {
+  .news {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

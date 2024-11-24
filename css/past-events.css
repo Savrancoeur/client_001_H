@@ -3,74 +3,53 @@
 -----------------------------------------*/
 
 .past-events {
-  background-color: var(--link-color);
-  padding: 7rem 0;
-}
-
-.section-header {
-  margin-bottom: 4rem;
+  background-color: #090806;
+  color: #f7f8f7;
 }
 
 .section-header h1 {
-  color: var(--primary-color);
-  font-size: var(--h2-font-size);
-  -webkit-text-stroke: 1px var(--white-color);
-  text-transform: uppercase;
-  font-weight: var(--font-weight-bold);
-}
-
-.section-header p {
-  font-size: var(--p-font-size);
-  -webkit-text-stroke: 1px var(--white-color);
-  color: var(--gray-color);
-  margin-top: 10px;
+  color: #c60a11;
 }
 
 .event-card {
-  background: var(--white-color);
-  border: 1px solid #efefef;
-  border-radius: var(--border-radius-small);
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #252629;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
 }
 
 .event-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .event-info {
-  padding: 1.5rem;
+  padding-top: 15px;
 }
 
 .event-title {
-  font-size: var(--h4-font-size);
-  font-weight: var(--font-weight-bold);
-  color: var(--dark-color);
-  margin-bottom: 0.5rem;
+  color: #a47800;
+  font-size: 1.5rem;
 }
 
 .event-date {
-  font-size: var(--menu-font-size);
-  color: var(--gray-color);
-  margin-bottom: 1rem;
+  color: #959494;
+  font-size: 1rem;
+  margin: 5px 0;
 }
 
 .event-desc {
-  font-size: var(--p-font-size);
-  color: var(--p-color);
-  line-height: 1.6em;
+  color: #5d5d5d;
+  font-size: 0.9rem;
+  margin-top: 10px;
 }
 
-@media screen and (max-width: 767px) {
-  .event-image {
-    height: 150px;
-  }
+.event-card:hover .event-title {
+  color: #a47800;
 }

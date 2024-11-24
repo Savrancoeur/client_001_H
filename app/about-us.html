@@ -30,13 +30,15 @@
     <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
+        <!-- Navbar Brand -->
         <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
 
+        <!-- Navbar Toggle Button (Burger Menu) -->
         <button
           class="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -44,7 +46,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Left Side Links -->
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
               <a href="./home.html" class="nav-link smoothScroll">Home</a>
@@ -78,8 +82,15 @@
             <li class="nav-item">
               <a href="./register.html" class="nav-link">Register</a>
             </li>
-            <li class="nav-item">
-              <a href="./home.html" class="nav-link">
+            <li class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link"
+                id="profileDropdown"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 <img
                   src="../public/images/auth/profile_icon.png"
                   style="width: 30px"
@@ -87,13 +98,17 @@
                   class="profile-pic"
                 />
               </a>
+              <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="./admin/dashboard.html">Admin</a>
+                <a class="dropdown-item" href="./profile.html">Member</a>
+              </div>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- ABOUT US  -->
+    <!-- ABOUT US -->
     <section class="about section" id="about">
       <div class="container">
         <div class="row">
@@ -121,7 +136,7 @@
             </p>
           </div>
 
-          <!-- TEAM  -->
+          <!-- TEAM -->
           <div class="col-lg-6 col-md-12 mt-5" id="team">
             <h3
               class="text-center mb-4"
@@ -142,6 +157,8 @@
                     src="../public/images/team/team-image.jpg"
                     class="img-fluid"
                     alt="Trainer"
+                    data-aos="zoom-in"
+                    data-aos-delay="800"
                   />
                   <div class="team-info d-flex flex-column">
                     <h3>Mary Yan</h3>
@@ -169,6 +186,8 @@
                     src="../public/images/team/team-image01.jpg"
                     class="img-fluid"
                     alt="Trainer"
+                    data-aos="zoom-in"
+                    data-aos-delay="900"
                   />
                   <div class="team-info d-flex flex-column">
                     <h3>Catherina</h3>
@@ -185,6 +204,47 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISION AND MISSION -->
+    <section class="vision-mission section" id="vision-mission">
+      <div class="container">
+        <div class="row">
+          <!-- VISION -->
+          <div
+            class="col-lg-6 col-md-12 mb-5"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <h2 class="text-center mb-4">Our Vision</h2>
+            <p>
+              Our vision is to inspire and empower individuals to achieve their
+              fitness goals, leading them to a healthier, happier life. We aim
+              to build a strong community where teamwork, perseverance, and
+              inclusivity are at the heart of everything we do. At AUS Sport
+              Club, we envision a future where everyone, regardless of their
+              background or experience, has the opportunity to thrive.
+            </p>
+          </div>
+
+          <!-- MISSION -->
+          <div
+            class="col-lg-6 col-md-12 mb-5"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <h2 class="text-center mb-4">Our Mission</h2>
+            <p>
+              Our mission is to create a supportive environment that motivates
+              individuals to reach their fitness potential. Through structured
+              programs, expert trainers, and a community-focused approach, we
+              aim to equip our members with the tools and knowledge they need to
+              succeed. We are committed to promoting well-being, encouraging
+              healthy habits, and fostering lifelong fitness journeys for all.
+            </p>
           </div>
         </div>
       </div>

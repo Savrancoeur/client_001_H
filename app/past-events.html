@@ -29,13 +29,15 @@
     <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
+        <!-- Navbar Brand -->
         <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
 
+        <!-- Navbar Toggle Button (Burger Menu) -->
         <button
           class="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -43,7 +45,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Left Side Links -->
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
               <a href="./home.html" class="nav-link smoothScroll">Home</a>
@@ -77,8 +81,15 @@
             <li class="nav-item">
               <a href="./register.html" class="nav-link">Register</a>
             </li>
-            <li class="nav-item">
-              <a href="./home.html" class="nav-link">
+            <li class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link"
+                id="profileDropdown"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 <img
                   src="../public/images/auth/profile_icon.png"
                   style="width: 30px"
@@ -86,6 +97,10 @@
                   class="profile-pic"
                 />
               </a>
+              <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="./admin/dashboard.html">Admin</a>
+                <a class="dropdown-item" href="./profile.html">Member</a>
+              </div>
             </li>
           </ul>
         </div>
@@ -93,12 +108,14 @@
     </nav>
 
     <!-- PAST EVENTS -->
-    <section class="past-events section">
+    <section class="past-events section" id="past-events">
       <div class="container" data-aos="fade-up" data-aos-delay="300">
         <!-- Section Header -->
         <div class="section-header text-center mb-5">
-          <h1 class="text-uppercase">Past Events</h1>
-          <p>
+          <h1 class="text-uppercase" data-aos="fade-up" data-aos-delay="400">
+            Past Events
+          </h1>
+          <p data-aos="fade-up" data-aos-delay="500">
             Explore the memorable events hosted by AUS Sport Club over the
             years.
           </p>
@@ -107,17 +124,27 @@
         <!-- Events Grid -->
         <div class="row">
           <!-- Event Item -->
-          <div class="col-lg-4 col-md-6 mb-4">
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
             <div class="event-card">
               <img
                 src="../public/images/event/basketball1.png"
                 alt="Event 1"
                 class="event-image"
+                data-aos="zoom-in"
+                data-aos-delay="700"
               />
               <div class="event-info">
-                <h3 class="event-title">Annual Sports Day 2024</h3>
-                <p class="event-date">March 15, 2024</p>
-                <p class="event-desc">
+                <h3 class="event-title" data-aos="fade-up" data-aos-delay="800">
+                  Annual Sports Day 2024
+                </h3>
+                <p class="event-date" data-aos="fade-up" data-aos-delay="900">
+                  March 15, 2024
+                </p>
+                <p class="event-desc" data-aos="fade-up" data-aos-delay="1000">
                   A thrilling day filled with competitions, teamwork, and
                   excitement, highlighting the spirit of sportsmanship.
                 </p>
@@ -126,18 +153,32 @@
           </div>
 
           <!-- Event Item -->
-          <div class="col-lg-4 col-md-6 mb-4">
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="1100"
+          >
             <div class="event-card">
               <img
                 src="../public/images/event/football1.jpg"
                 alt="Event 2"
                 class="event-image"
+                data-aos="zoom-in"
+                data-aos-delay="1200"
               />
               <div class="event-info">
-                <h3 class="event-title">Summer Soccer League</h3>
-                <p class="event-date">July 10 - August 25, 2024</p>
-                <p class="event-desc">
-                  A month-long soccer league featuring talented and competitve
+                <h3
+                  class="event-title"
+                  data-aos="fade-up"
+                  data-aos-delay="1300"
+                >
+                  Summer Soccer League
+                </h3>
+                <p class="event-date" data-aos="fade-up" data-aos-delay="1400">
+                  July 10 - August 25, 2024
+                </p>
+                <p class="event-desc" data-aos="fade-up" data-aos-delay="1500">
+                  A month-long soccer league featuring talented and competitive
                   teams from around the region.
                 </p>
               </div>
@@ -145,17 +186,31 @@
           </div>
 
           <!-- Event Item -->
-          <div class="col-lg-4 col-md-6 mb-4">
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="1600"
+          >
             <div class="event-card">
               <img
                 src="../public/images/event/marathon1.png"
                 alt="Event 3"
                 class="event-image"
+                data-aos="zoom-in"
+                data-aos-delay="1700"
               />
               <div class="event-info">
-                <h3 class="event-title">Winter Training Camp</h3>
-                <p class="event-date">December 1-15, 2023</p>
-                <p class="event-desc">
+                <h3
+                  class="event-title"
+                  data-aos="fade-up"
+                  data-aos-delay="1800"
+                >
+                  Winter Training Camp
+                </h3>
+                <p class="event-date" data-aos="fade-up" data-aos-delay="1900">
+                  December 1-15, 2023
+                </p>
+                <p class="event-desc" data-aos="fade-up" data-aos-delay="2000">
                   A comprehensive training program to prepare athletes for
                   upcoming competitions.
                 </p>

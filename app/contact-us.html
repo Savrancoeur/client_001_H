@@ -29,13 +29,15 @@
     <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
+        <!-- Navbar Brand -->
         <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
 
+        <!-- Navbar Toggle Button (Burger Menu) -->
         <button
           class="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -43,7 +45,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Left Side Links -->
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
               <a href="./home.html" class="nav-link smoothScroll">Home</a>
@@ -77,8 +81,15 @@
             <li class="nav-item">
               <a href="./register.html" class="nav-link">Register</a>
             </li>
-            <li class="nav-item">
-              <a href="./home.html" class="nav-link">
+            <li class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link"
+                id="profileDropdown"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 <img
                   src="../public/images/auth/profile_icon.png"
                   style="width: 30px"
@@ -86,6 +97,10 @@
                   class="profile-pic"
                 />
               </a>
+              <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="./admin/dashboard.html">Admin</a>
+                <a class="dropdown-item" href="./profile.html">Member</a>
+              </div>
             </li>
           </ul>
         </div>
@@ -115,24 +130,21 @@
                 name="cf-name"
                 placeholder="Name"
               />
-
               <input
                 type="email"
                 class="form-control"
                 name="cf-email"
                 placeholder="Email"
               />
-
               <textarea
                 class="form-control"
                 rows="5"
                 name="cf-message"
                 placeholder="Message"
               ></textarea>
-
               <button
                 type="submit"
-                class="form-control"
+                class="form-control btn custom-btn"
                 id="submit-button"
                 name="submit"
               >
@@ -150,12 +162,7 @@
               <i class="fa fa-map-marker mr-1"></i> 107th Street x 65th Street,
               Mandalay, Myanmar
             </p>
-            <!-- How to change your own map point
-  1. Go to Google Maps
-  2. Click on your location point
-  3. Click "Share" and choose "Embed map" tab
-  4. Copy only URL and paste it within the src="" field below
--->
+
             <div class="google-map" data-aos="fade-up" data-aos-delay="900">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.870262750139!2d96.10315237533713!3d21.939538479947586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30cb6d00437fc6d5%3A0x7b39ed9fcb701778!2sAuston%20Mandalay%20Campus!5e0!3m2!1sen!2smm!4v1732124295133!5m2!1sen!2smm"
@@ -166,6 +173,12 @@
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
+              <!-- How to change your own map point
+              1. Go to Google Maps
+              2. Click on your location point
+              3. Click "Share" and choose "Embed map" tab
+              4. Copy only URL and paste it within the src="" field below
+              -->
             </div>
           </div>
         </div>
