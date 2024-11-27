@@ -63,3 +63,17 @@ document
     // Clear the form after submission
     this.reset();
   });
+
+// Sweet Alert
+document.addEventListener("DOMContentLoaded", function () {
+  // Check if the message should be displayed
+  const successMessage = document.getElementById("success-message");
+  if (successMessage) {
+    Swal.fire({
+      title: "Success!",
+      text: successMessage.dataset.message,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+  }
+});
