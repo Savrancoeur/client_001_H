@@ -33,11 +33,17 @@ function loginveriy($getemail,$getpassword){
         $sql = "SELECT * FROM users WHERE email=? AND password=?";
         $stmt = $conn->prepare($sql);
         $status = $stmt->execute([$getemail,$getpassword]);
+        $user = $stmt->fetch();
         if($stmt->rowCount() > 0){
             setsession('email', $getemail);
             setsession('password', $getpassword);
             setsession('user-login-success',"You have successfully logged in");
-            redirectto('home.php');
+            echo $user['role'];
+            if($user['role']){
+                redirectto('admin/dashboard.php');
+            }else{
+                redirectto('home.php');   
+            }
         }else{
             setsession('login-error', "Your email might be incorrect");
             header("Location:login.php");

@@ -15,7 +15,7 @@ function getsession($key){
 
 // session verify function if it exists
 function verifysession($key){
-    return issest($_SESSION[$key]);
+    return isset($_SESSION[$key]);
 }
 
 //  session delete function with its name

@@ -1,3 +1,41 @@
+<?php 
+
+// to show error codes
+ini_set("display_errors", 1);
+
+// call dbconnection file to use
+require_once("./../dbconnect.php");
+// call sessionconfig file to use its methods
+require_once("./../sessionconfig.php");
+
+$admin = null;
+$message = '';
+
+if (!isset($_SESSION['email'])) {
+    redirectto("./../login.php");
+}
+
+if(verifysession("user-login-success")){
+    $message = getsession("user-login-success");
+}
+
+if(verifysession('email')) {
+    $email = getsession('email');
+    try {
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$email]);
+        $admin = $stmt->fetch();
+        $conn = null;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,23 +120,31 @@
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
                                 <div class="image">
-                                    <img src="./../../public/images/icon/avatar-01.jpg" alt="John Doe" />
+                                    <?php if($admin['profile'] != null){ ?>
+                                        <img src="./../../<?php echo $admin['profile'] ?>" alt="<?php echo $admin['name'] ?>" />
+                                    <?php }else{ ?>
+                                        <img src="./../../public/images/icon/avatar-01.jpg" alt="<?php echo $admin['name'] ?>" />
+                                    <?php } ?>
                                 </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#">john doe</a>
+                                    <a class="js-acc-btn" href="#"><?php echo ucwords($admin['name']) ?></a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img src="./../../public/images/icon/avatar-01.jpg" alt="John Doe" />
+                                                <?php if($admin['profile'] != null){ ?>
+                                                    <img src="./../../<?php echo $admin['profile'] ?>" alt="<?php echo $admin['name'] ?>" />
+                                                <?php }else{ ?>
+                                                    <img src="./../../public/images/icon/avatar-01.jpg" alt="<?php echo $admin['name'] ?>" />
+                                                <?php } ?>
                                             </a>
                                         </div>
                                         <div class="content">
                                             <h5 class="name">
-                                                <a href="#">john doe</a>
+                                                <a href="#"><?php echo ucwords($admin['name']) ?></a>
                                             </h5>
-                                            <span class="email">johndoe@example.com</span>
+                                            <span class="email"><?php echo $admin['email'] ?></span>
                                         </div>
                                     </div>
                                     <div class="account-dropdown__body">
@@ -108,7 +154,7 @@
                                         </div>
                                     </div>
                                     <div class="account-dropdown__footer">
-                                        <a href="#">
+                                        <a href="./../logout.php">
                                             <i class="zmdi zmdi-power"></i>Logout</a>
                                     </div>
                                 </div>
@@ -167,15 +213,20 @@
             <section class="alert-wrap p-t-70 p-b-70">
                 <div class="container">
                     <!-- ALERT-->
-                    <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
-                        <i class="zmdi zmdi-check-circle"></i>
-                        <span class="content">You successfully read this important alert message.</span>
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">
-                                <i class="zmdi zmdi-close-circle"></i>
-                            </span>
-                        </button>
-                    </div>
+                    <?php if($message != null ){ ?>
+                        <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
+                            <i class="zmdi zmdi-check-circle"></i>
+                            <span class="content"><?php echo $message ?></span>
+                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">
+                                    <i class="zmdi zmdi-close-circle"></i>
+                                </span>
+                            </button>
+                        </div>
+                    <?php 
+                        $message = '';
+                        unsetsession('user-login-success');
+                    }?>
                     <!-- END ALERT-->
                 </div>
             </section>
