@@ -45,7 +45,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a href="./home.html" class="nav-link smoothScroll">Home</a>
+              <a href="./home.php" class="nav-link smoothScroll">Home</a>
             </li>
             <li class="nav-item">
               <a href="./event-details.html" class="nav-link smoothScroll"
@@ -66,13 +66,13 @@
 
           <ul class="navbar-nav ml-auto d-flex align-items-center">
             <li class="nav-item">
-              <a href="./login.html" class="nav-link">Login</a>
+              <a href="./login.php" class="nav-link">Login</a>
             </li>
             <li class="nav-item">
-              <a href="./register.html" class="nav-link">Register</a>
+              <a href="./register.php" class="nav-link">Register</a>
             </li>
             <li class="nav-item">
-              <a href="./home.html" class="nav-link">
+              <a href="./home.php" class="nav-link">
                 <img
                   src="../public/images/auth/profile_icon.png"
                   style="width: 30px"

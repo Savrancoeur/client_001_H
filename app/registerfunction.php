@@ -4,29 +4,29 @@
 ini_set("display_errors", 1);
 
 // call dbconnection file to use
-require_once("dbconnection.php");
+require_once("dbconnect.php");
 // call sessionconfig file to use its methods
 require_once("sessionconfig.php");
 
 // check if the data from register form are sent.
-if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_SESSION['register'])) {
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['register'])) {
     $getname = textfilter($_POST['name']);
     $getemail = textfilter($_POST['email']);
-    $getpassword = md5(textfilter($_POST['password']));
+    $password = textfilter($_POST['password']);
 
     // echo $getname;
     // echo $getemail;
     // echo $getpassword;
 
     // check if the register email and password contain
-    if ($getemail && $getpassword) {
+    if ($getemail && $password) {
 
         // check the password is strong ors not
         if(ispasswordstrong($password)){
-
+            $getpassword = md5($password);
             try {
                 // perpare the sql statement to insert data into database
-                $stmt = $conn->prepare("INSERT INTO users(name,email,password) VALUE (:profile,:firstname,:lastname,:email,:password,:dob,:phone,:address,:documents,:newsletter)");
+                $stmt = $conn->prepare("INSERT INTO users(name,email,password) VALUE (:name,:email,:password)");
     
                 // use bindParam() method for security
                 $stmt->bindParam(":name", $bindname);
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_SESSION['register'])) {
                     setsession('password', $bindpassword);
                     setsession('register-success', "Your registraion is success");
                     //redirect to homepage
-                    redirectto('./home.php');
+                    redirectto('home.php');
                 } else {
                     echo "Try Again";
                 }
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_SESSION['register'])) {
             // session store
             setsession("password-not-strong","Your Password is not strong, Please try again");
             // redirect to register page
-            redirectto('./register.php');
+            redirectto('register.php');
         }
     }
 }
@@ -106,9 +106,6 @@ function isstrong($password)
     }
 }
 
-
-
-?>
 
 
 ?>

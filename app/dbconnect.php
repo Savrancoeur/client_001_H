@@ -14,7 +14,7 @@ $dbname = "aus";
 try {
     // connection with database by PDO
     $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
-    echo "success";
+    // echo "success";
 } catch (PDOException $e) {
     echo "Error Found : " . $e->getMessage();
 }
