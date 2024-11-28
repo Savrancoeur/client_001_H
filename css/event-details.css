@@ -3,6 +3,7 @@
 -----------------------------------------*/
 
 .hero {
+  position: relative;
   background-image: url("../public/images/hero-bg.jpg");
   background-size: cover;
   background-position: top;
@@ -11,21 +12,17 @@
   min-height: 100vh;
   position: relative;
 
-  position: relative;
   height: 100vh;
-  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #000;
-  color: #fff;
+  justify-content: center;
   text-align: center;
-  padding: 0 15px;
-  box-sizing: border-box;
+  color: #fff;
 }
 
 .hero .bg-overlay {
   position: absolute;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -34,17 +31,23 @@
 }
 
 .hero-text h1 {
+  position: relative;
+  z-index: 100;
   font-size: 3rem;
   line-height: 1.2;
   margin: 20px 0;
 }
 
 .hero-text h6 {
+  position: relative;
+  z-index: 100;
   font-size: 1.2rem;
   margin-bottom: 20px;
 }
 
 .custom-btn {
+  position: relative;
+  z-index: 100;
   transition: transform 0.3s ease-in-out;
 }
 
