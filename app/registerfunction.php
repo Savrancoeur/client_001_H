@@ -1,6 +1,7 @@
 <?php
 
 // to show error codes
+global $conn;
 ini_set("display_errors", 1);
 
 // call dbconnection file to use
