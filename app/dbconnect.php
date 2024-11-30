@@ -7,7 +7,7 @@ $dbhost = "localhost";
 // database user name
 $dbuser = "root";
 // database password
-$dbpass = "";
+$dbpass = "mydbserver2025";
 // database name
 $dbname = "aus";
 

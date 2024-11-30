@@ -1,3 +1,65 @@
+<?php
+
+// to show error codes
+ini_set("display_errors", 1);
+
+// call dbconnection file to use
+require_once("./../dbconnect.php");
+// call sessionconfig file to use its methods
+require_once("./../sessionconfig.php");
+
+// making default time zone
+date_default_timezone_set("Asia/Yangon");
+
+$date = date("Y-m-d");
+//echo $date;
+
+$admin = null;
+$sports = null;
+$message = '';
+
+if (!isset($_SESSION['email'])) {
+    redirectto("./../login.php");
+}
+
+if(verifysession('email')){
+    $email = getsession('email');
+    try {
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$email]);
+        $admin = $stmt->fetch();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+function getsports(){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT * FROM sports";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+        $conn = null;
+    }catch (PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+if(verifysession("event-create-success")){
+    $message = getsession("event-create-success");
+}
+
+$sports = getsports();
+
+//var_dump($sports);
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,23 +144,31 @@
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
                                 <div class="image">
-                                    <img src="./../../public/images/icon/avatar-01.jpg" alt="John Doe" />
+                                    <?php if($admin['profile'] != null){ ?>
+                                        <img src="./../../<?php echo $admin['profile'] ?>" alt="<?php echo $admin['name'] ?>" />
+                                    <?php }else{ ?>
+                                        <img src="./../../public/images/icon/avatar-01.jpg" alt="<?php echo $admin['name'] ?>" />
+                                    <?php } ?>
                                 </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#">john doe</a>
+                                    <a class="js-acc-btn" href="#"><?php echo ucwords($admin['name']) ?></a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img src="./../../public/images/icon/avatar-01.jpg" alt="John Doe" />
+                                                <?php if($admin['profile'] != null){ ?>
+                                                    <img src="./../../<?php echo $admin['profile'] ?>" alt="<?php echo $admin['name'] ?>" />
+                                                <?php }else{ ?>
+                                                    <img src="./../../public/images/icon/avatar-01.jpg" alt="<?php echo $admin['name'] ?>" />
+                                                <?php } ?>
                                             </a>
                                         </div>
                                         <div class="content">
                                             <h5 class="name">
-                                                <a href="#">john doe</a>
+                                                <a href="#"><?php echo ucwords($admin['name']) ?></a>
                                             </h5>
-                                            <span class="email">johndoe@example.com</span>
+                                            <span class="email"><?php echo $admin['email'] ?></span>
                                         </div>
                                     </div>
                                     <div class="account-dropdown__body">
@@ -108,7 +178,7 @@
                                         </div>
                                     </div>
                                     <div class="account-dropdown__footer">
-                                        <a href="#">
+                                        <a href="./../logout.php">
                                             <i class="zmdi zmdi-power"></i>Logout</a>
                                     </div>
                                 </div>
@@ -147,7 +217,7 @@
                             <div class="welcome2-greeting">
                                 <h1 class="title-6">Hi
                                     <span>Admin</span>, Welcome back</h1>
-                                <p>Manage Event Detail and User Information</p>
+                                <p>Manage Event Detail Information</p>
                             </div>
                             <form class="form-header form-header2" action="" method="post">
                                 <input class="au-input au-input--w435" type="text" name="search" placeholder="Search for datas &amp; reports...">
@@ -167,15 +237,20 @@
             <section class="alert-wrap p-t-70 p-b-70">
                 <div class="container">
                     <!-- ALERT-->
-                    <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
-                        <i class="zmdi zmdi-check-circle"></i>
-                        <span class="content">You successfully read this important alert message.</span>
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">
-                                <i class="zmdi zmdi-close-circle"></i>
-                            </span>
-                        </button>
-                    </div>
+                    <?php if($message != null ){ ?>
+                        <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
+                            <i class="zmdi zmdi-check-circle"></i>
+                            <span class="content"><?php echo $message ?></span>
+                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">
+                                    <i class="zmdi zmdi-close-circle"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <?php
+                        $message = '';
+                        unsetsession('event-create-success');
+                    }?>
                     <!-- END ALERT-->
                 </div>
             </section>
@@ -188,20 +263,20 @@
                                 <nav class="navbar-sidebar2 navbar-sidebar3">
                                     <ul class="list-unstyled navbar__list border rounded">
                                         <li>
-                                            <a href="dashboard.html">
+                                            <a href="dashboard.php">
                                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                                             </a>
                                         </li>
                                         <li class="active has-sub">
-                                            <a href="#">
+                                            <a href="eventmanagement.php">
                                                 <i class="fas fa-calendar"></i>Events</a>
                                         </li>
                                         <li>
-                                            <a href="membermanagement.html">
+                                            <a href="membermanagement.php">
                                                 <i class="fas fa-users"></i>Members</a>
                                         </li>
                                         <li>
-                                            <a href="contactmessage.html">
+                                            <a href="contactmessage.php">
                                                 <i class="fas fa-comments"></i>Messages</a>
                                             <span class="inbox-num">3</span>
                                         </li>
@@ -218,77 +293,78 @@
                                         <div class="card">
                                             <div class="card-header">Add New Upcoming Event</div>
                                             <div class="card-body">
-                                                <form action="" method="post" novalidate="novalidate">
+                                                <form action="eveninsert.php" method="post" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <label for="insert-event-name" class="control-label mb-1">Event Name</label>
-                                                        <input id="insert-event-name" name="name" type="text" class="form-control" placeholder="Enter event name.....">
+                                                        <input id="insert-event-name" name="name" type="text" class="form-control" placeholder="Enter event name....." required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="insert-event-description" class=" form-control-label">Description</label>
-                                                        <textarea name="description" id="insert-event-description" rows="4" placeholder="Description..." class="form-control"></textarea>
+                                                        <textarea name="description" id="insert-event-description" rows="4" placeholder="Description..." class="form-control" required></textarea>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="insert-event-date" class="control-label mb-1">Event Date</label>
-                                                                <input id="insert-event-date" name="date" type="date" class="form-control" min="2024-11-21">
+                                                                <input id="insert-event-date" name="date" type="date" class="form-control" min="<?php echo $date ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="insert-event-time" class="control-label mb-1">Event Time</label>
-                                                                <input id="insert-event-time" name="time" type="time" class="form-control">
+                                                                <input id="insert-event-time" name="time" type="time" class="form-control" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="insert-event-location" class="control-label mb-1">Event Location</label>
-                                                        <input id="insert-event-location" name="location" type="text" class="form-control" placeholder="Enter event location....">
+                                                        <input id="insert-event-location" name="location" type="text" class="form-control" placeholder="Enter event location...." required>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="insert-due-date" class="control-label mb-1">Registration Due Date</label>
-                                                                <input id="insert-dues-date" name="due-date" type="date" class="form-control" min="2024-11-21">
+                                                                <input id="insert-dues-date" name="due-date" type="date" class="form-control" min="<?php echo $date ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="insert-event-limit" class="control-label mb-1">Participant Limit</label>
-                                                                <input id="insert-event-limit" name="limit" type="number" min="10" value="10" class="form-control">
+                                                                <input id="insert-event-limit" name="limit" type="number" min="10" value="10" class="form-control" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="insert-age-group">Age Group</label>
-                                                        <select name="age-group" id="insert-age-group" class="form-control">
+                                                        <select name="age-group" id="insert-age-group" class="form-control" required>
                                                             <option selected disabled>Please select</option>
-                                                            <option value="1">Under 18</option>
-                                                            <option value="2">18 - 30</option>
-                                                            <option value="3">30 +</option>
+                                                            <option value="child">Child (under 15)</option>
+                                                            <option value="teen">Teen (Between 16 and 23) </option>
+                                                            <option value="adult">Adult (Over 23) </option>
+                                                            <option value="all">No Age Limit </option>
                                                         </select>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-7">
                                                             <div class="form-group">
                                                                 <label for="event-photo">Event Photo</label>
-                                                                <input type="file" id="event-photo" name="photo" class="form-control-file">
+                                                                <input type="file" id="event-photo" name="image" accept="image/png, image/jpeg, image/jpg" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div class="form-group">
                                                                 <label for="insert-sport-type">Sport Type</label>
-                                                                <select name="sport" id="insert-sport-type" class="form-control">
+                                                                <select name="sport" id="insert-sport-type" class="form-control" required>
                                                                     <option selected disabled>Please select</option>
-                                                                    <option value="1">Football</option>
-                                                                    <option value="2">Table Tennis</option>
-                                                                    <option value="3">Baskeball</option>
+                                                                    <?php foreach ($sports as $sport){
+                                                                        echo '<option value="'.$sport['id'].'">'.$sport['name'].'</option>';
+                                                                    } ?>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <button id="payment-button" type="submit" class="btn btn-lg btn-dark btn-block">
+                                                        <button id="payment-button" name="create-event" type="submit" class="btn btn-lg btn-dark btn-block">
                                                             <span id="payment-button-amount">Add Event</span>
                                                         </button>
                                                     </div>

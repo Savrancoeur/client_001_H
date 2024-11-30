@@ -3,9 +3,9 @@
 // to show error codes
 ini_set("display_errors", 1);
 
-// call dbconnection file to use
+// call database connection file to use
 require_once("./../dbconnect.php");
-// call sessionconfig file to use its methods
+// call session config file to use its methods
 require_once("./../sessionconfig.php");
 
 $admin = null;
@@ -239,20 +239,20 @@ if(verifysession('email')) {
                                 <nav class="navbar-sidebar2 navbar-sidebar3">
                                     <ul class="list-unstyled navbar__list border rounded">
                                         <li class="active has-sub">
-                                            <a class="js-arrow" href="javascript:void(0);">
+                                            <a class="js-arrow" href="dashboard.php">
                                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="./eventmanagement.html">
+                                            <a href="eventmanagement.php">
                                                 <i class="fas fa-calendar"></i>Events</a>
                                         </li>
                                         <li>
-                                            <a href="membermanagement.html">
+                                            <a href="membermanagement.php">
                                                 <i class="fas fa-users"></i>Members</a>
                                         </li>
                                         <li>
-                                            <a href="contactmessage.html">
+                                            <a href="contactmessage.php">
                                                 <i class="fas fa-comments"></i>Messages</a>
                                             <span class="inbox-num">3</span>
                                         </li>
