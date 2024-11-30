@@ -1,9 +1,3 @@
-<?php
-session_start();
-// Manually set a success message for testing
-$_SESSION['success_message'] = "This is a test success message!";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,16 +77,25 @@ $_SESSION['success_message'] = "This is a test success message!";
         </div>
     </nav>
 
-    <!-- sweet alert success message -->
-    <?php if (!empty($_SESSION['success_message'])): ?>
-    <div id="success-message" data-message="<?= $_SESSION['success_message']; ?>"></div>
-    <?php unset($_SESSION['success_message']); // Clear the message after displaying ?>
-    <?php endif; ?>
+
+
 
 
     <!-- HERO -->
     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
         <div class="bg-overlay"></div>
+
+        <!-- Modern Success Alert -->
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-end ms-auto me-3 mb-5"
+            role="alert">
+            <i class="fas fa-check-circle me-3 fa-2x text-light"></i>
+            <div class="alert-content flex-grow-1">
+                You successfully read this important alert message.
+            </div>
+            <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close">
+                <i class="fas fa-times-circle"></i>
+            </button>
+        </div>
 
         <div class="container">
             <div class="row">

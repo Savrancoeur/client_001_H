@@ -212,6 +212,58 @@ a:focus {
 }
 
 /*---------------------------------------
+   ALERT              
+-----------------------------------------*/
+
+.alert {
+  display: flex;
+  align-items: center;
+  border: 2px solid #198754; /* Bootstrap's green color */
+  background-color: #198754; /* Bootstrap's green success color */
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.alert .alert-content {
+  flex-grow: 1;
+}
+
+.alert .btn-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.alert .btn-close:hover {
+  color: #d4d4d4;
+}
+
+.alert i {
+  color: #fff;
+}
+
+.alert-dismissible {
+  padding-right: 40px;
+}
+
+.alert-dismissible .btn-close {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  line-height: 1;
+}
+
+/*---------------------------------------
    FOOTER              
 -----------------------------------------*/
 
