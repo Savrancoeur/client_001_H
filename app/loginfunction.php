@@ -38,7 +38,11 @@ function loginveriy($getemail,$getpassword){
             setsession('email', $getemail);
             setsession('password', $getpassword);
             setsession('user-login-success',"You have successfully logged in");
-            echo $user['role'];
+
+            $sql = "UPDATE users SET status=1 WHERE email=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$getemail]);
+
             if($user['role']){
                 redirectto('admin/dashboard.php');
             }else{
