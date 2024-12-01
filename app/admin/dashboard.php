@@ -1,3 +1,98 @@
+<?php 
+
+// to show error codes
+ini_set("display_errors", 1);
+
+// call database connection file to use
+require_once("./../dbconnect.php");
+// call session config file to use its methods
+require_once("./../sessionconfig.php");
+
+$admin = null;
+$message = '';
+
+if (!isset($_SESSION['email'])) {
+    redirectto("./../login.php");
+}
+
+if(verifysession("user-login-success")){
+    $message = getsession("user-login-success");
+}
+
+if(verifysession('email')) {
+    $email = getsession('email');
+    try {
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$email]);
+        $admin = $stmt->fetch();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+function totalmessagecount(){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT COUNT(*) FROM messages";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+function totalevents(){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT COUNT(*) FROM events";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+function totalmembers(){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT COUNT(*) FROM users WHERE role = 0";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+function getunreadcount(){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT COUNT(*) FROM messages WHERE status = 0";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+        $conn = null;
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+$totalevents = totalevents();
+$totalmembers = totalmembers();
+$totalmessages = totalmessagecount();
+$unreadcount = getunreadcount();
+
+//echo $totalevents;
+//echo $totalmembers;
+//echo $totalmessages;
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,23 +177,31 @@
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
                                 <div class="image">
-                                    <img src="./../../public/images/icon/avatar-01.jpg" alt="John Doe" />
+                                    <?php if($admin['profile'] != null){ ?>
+                                        <img src="./../../<?php echo $admin['profile'] ?>" alt="<?php echo $admin['name'] ?>" />
+                                    <?php }else{ ?>
+                                        <img src="./../../public/images/icon/avatar-01.jpg" alt="<?php echo $admin['name'] ?>" />
+                                    <?php } ?>
                                 </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#">john doe</a>
+                                    <a class="js-acc-btn" href="#"><?php echo ucwords($admin['name']) ?></a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img src="./../../public/images/icon/avatar-01.jpg" alt="John Doe" />
+                                                <?php if($admin['profile'] != null){ ?>
+                                                    <img src="./../../<?php echo $admin['profile'] ?>" alt="<?php echo $admin['name'] ?>" />
+                                                <?php }else{ ?>
+                                                    <img src="./../../public/images/icon/avatar-01.jpg" alt="<?php echo $admin['name'] ?>" />
+                                                <?php } ?>
                                             </a>
                                         </div>
                                         <div class="content">
                                             <h5 class="name">
-                                                <a href="#">john doe</a>
+                                                <a href="#"><?php echo ucwords($admin['name']) ?></a>
                                             </h5>
-                                            <span class="email">johndoe@example.com</span>
+                                            <span class="email"><?php echo $admin['email'] ?></span>
                                         </div>
                                     </div>
                                     <div class="account-dropdown__body">
@@ -108,7 +211,7 @@
                                         </div>
                                     </div>
                                     <div class="account-dropdown__footer">
-                                        <a href="#">
+                                        <a href="./../logout.php">
                                             <i class="zmdi zmdi-power"></i>Logout</a>
                                     </div>
                                 </div>
@@ -167,15 +270,20 @@
             <section class="alert-wrap p-t-70 p-b-70">
                 <div class="container">
                     <!-- ALERT-->
-                    <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
-                        <i class="zmdi zmdi-check-circle"></i>
-                        <span class="content">You successfully read this important alert message.</span>
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">
-                                <i class="zmdi zmdi-close-circle"></i>
-                            </span>
-                        </button>
-                    </div>
+                    <?php if($message != null ){ ?>
+                        <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
+                            <i class="zmdi zmdi-check-circle"></i>
+                            <span class="content"><?php echo $message ?></span>
+                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">
+                                    <i class="zmdi zmdi-close-circle"></i>
+                                </span>
+                            </button>
+                        </div>
+                    <?php 
+                        $message = '';
+                        unsetsession('user-login-success');
+                    }?>
                     <!-- END ALERT-->
                 </div>
             </section>
@@ -188,22 +296,24 @@
                                 <nav class="navbar-sidebar2 navbar-sidebar3">
                                     <ul class="list-unstyled navbar__list border rounded">
                                         <li class="active has-sub">
-                                            <a class="js-arrow" href="javascript:void(0);">
+                                            <a class="js-arrow" href="dashboard.php">
                                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="./eventmanagement.html">
+                                            <a href="eventmanagement.php">
                                                 <i class="fas fa-calendar"></i>Events</a>
                                         </li>
                                         <li>
-                                            <a href="membermanagement.html">
+                                            <a href="membermanagement.php">
                                                 <i class="fas fa-users"></i>Members</a>
                                         </li>
                                         <li>
-                                            <a href="contactmessage.html">
+                                            <a href="contactmessage.php">
                                                 <i class="fas fa-comments"></i>Messages</a>
-                                            <span class="inbox-num">3</span>
+                                            <?php if($unreadcount > 0){
+                                                echo '<span class="inbox-num">'.$unreadcount.'</span>';
+                                            } ?>
                                         </li>
                                     </ul>
                                 </nav>
@@ -216,8 +326,8 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="statistic__item statistic__item--red">
-                                            <h2 class="number">$1,060,386</h2>
-                                            <span class="desc">total earnings</span>
+                                            <h2 class="number"><?php echo $totalmembers ?> Members</h2>
+                                            <span class="desc">Total Members</span>
                                             <div class="icon">
                                                 <i class="zmdi zmdi-money"></i>
                                             </div>
@@ -225,8 +335,8 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="statistic__item statistic__item--orange">
-                                            <h2 class="number">388,688</h2>
-                                            <span class="desc">items sold</span>
+                                            <h2 class="number"><?php echo $totalevents ?> Events</h2>
+                                            <span class="desc">Total Event</span>
                                             <div class="icon">
                                                 <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
@@ -234,8 +344,8 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="statistic__item statistic__item--gray">
-                                            <h2 class="number">1,086</h2>
-                                            <span class="desc">this week</span>
+                                            <h2 class="number"><?php echo $totalmessages ?> Messages</h2>
+                                            <span class="desc">Total Contact Message</span>
                                             <div class="icon">
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>
@@ -299,7 +409,6 @@
             </section>
         </div>
         <!-- END PAGE CONTENT  -->
-
     </div>
 
     <!-- Jquery JS-->
