@@ -27,11 +27,68 @@ if(verifysession('email')) {
         $stmt = $conn->prepare($sql);
         $stmt->execute([$email]);
         $admin = $stmt->fetch();
-        $conn = null;
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
 }
+
+function totalmessagecount(){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT COUNT(*) FROM messages";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+function totalevents(){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT COUNT(*) FROM events";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+function totalmembers(){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT COUNT(*) FROM users WHERE role = 0";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+function getunreadcount(){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT COUNT(*) FROM messages WHERE status = 0";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+        $conn = null;
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+$totalevents = totalevents();
+$totalmembers = totalmembers();
+$totalmessages = totalmessagecount();
+$unreadcount = getunreadcount();
+
+//echo $totalevents;
+//echo $totalmembers;
+//echo $totalmessages;
 
 
 ?>
@@ -254,7 +311,9 @@ if(verifysession('email')) {
                                         <li>
                                             <a href="contactmessage.php">
                                                 <i class="fas fa-comments"></i>Messages</a>
-                                            <span class="inbox-num">3</span>
+                                            <?php if($unreadcount > 0){
+                                                echo '<span class="inbox-num">'.$unreadcount.'</span>';
+                                            } ?>
                                         </li>
                                     </ul>
                                 </nav>
@@ -267,8 +326,8 @@ if(verifysession('email')) {
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="statistic__item statistic__item--red">
-                                            <h2 class="number">$1,060,386</h2>
-                                            <span class="desc">total earnings</span>
+                                            <h2 class="number"><?php echo $totalmembers ?> Members</h2>
+                                            <span class="desc">Total Members</span>
                                             <div class="icon">
                                                 <i class="zmdi zmdi-money"></i>
                                             </div>
@@ -276,8 +335,8 @@ if(verifysession('email')) {
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="statistic__item statistic__item--orange">
-                                            <h2 class="number">388,688</h2>
-                                            <span class="desc">items sold</span>
+                                            <h2 class="number"><?php echo $totalevents ?> Events</h2>
+                                            <span class="desc">Total Event</span>
                                             <div class="icon">
                                                 <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
@@ -285,8 +344,8 @@ if(verifysession('email')) {
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="statistic__item statistic__item--gray">
-                                            <h2 class="number">1,086</h2>
-                                            <span class="desc">this week</span>
+                                            <h2 class="number"><?php echo $totalmessages ?> Messages</h2>
+                                            <span class="desc">Total Contact Message</span>
                                             <div class="icon">
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>

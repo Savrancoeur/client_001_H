@@ -49,9 +49,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create-event'])){
     if (move_uploaded_file($getevphoto['tmp_name'], $uploadpath)) {
         try {
             $conn = $GLOBALS['conn'];
-            $sql = "INSERT INTO events (name,image,description,participantslimit,date,time,duedate,location,agegroup,sports_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO events (name,image,description,participantslimit,remainlimit,date,time,duedate,location,agegroup,sports_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $stmt->execute([$getevname,$dbfilepath,$getevdesc,$getevlimit,$getevdate,$getevtime,$getevduedate,$getevlocation,$geteveage,$getevsporttype]);
+            $stmt->execute([$getevname,$dbfilepath,$getevdesc,$getevlimit,$getevlimit,$getevdate,$getevtime,$getevduedate,$getevlocation,$geteveage,$getevsporttype]);
             setsession('event-create-success',"Event created successfully");
             redirectto("eventmanagement.php");
         } catch (PDOException $e) {

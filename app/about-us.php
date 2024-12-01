@@ -17,12 +17,13 @@
       rel="stylesheet"
       href="../public/libs/font-awesome-5/css/fontawesome-all.min.css"
     />
+
     <!-- AOS CSS Link -->
     <link rel="stylesheet" href="../public/libs/css/aos.css" />
 
     <!-- Custom CSS link -->
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/contact-us.css" />
+    <link rel="stylesheet" href="../css/about-us.css" />
   </head>
 
   <body>
@@ -46,20 +47,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a href="./home.html" class="nav-link smoothScroll">Home</a>
+              <a href="./home.php" class="nav-link smoothScroll">Home</a>
             </li>
             <li class="nav-item">
-              <a href="./event-details.html" class="nav-link smoothScroll"
+              <a href="event-details.php" class="nav-link smoothScroll"
                 >Events</a
               >
             </li>
             <li class="nav-item">
-              <a href="./about-us.html" class="nav-link smoothScroll"
+              <a href="about-us.php" class="nav-link smoothScroll"
                 >About Us</a
               >
             </li>
             <li class="nav-item">
-              <a href="./contact-us.html" class="nav-link smoothScroll"
+              <a href="contact-us.php" class="nav-link smoothScroll"
                 >Contact</a
               >
             </li>
@@ -67,13 +68,13 @@
 
           <ul class="navbar-nav ml-auto d-flex align-items-center">
             <li class="nav-item">
-              <a href="./login.html" class="nav-link">Login</a>
+              <a href="./login.php" class="nav-link">Login</a>
             </li>
             <li class="nav-item">
-              <a href="./register.html" class="nav-link">Register</a>
+              <a href="./register.php" class="nav-link">Register</a>
             </li>
             <li class="nav-item">
-              <a href="./home.html" class="nav-link">
+              <a href="./profile.php" class="nav-link">
                 <img
                   src="../public/images/auth/profile_icon.png"
                   style="width: 30px"
@@ -87,80 +88,97 @@
       </div>
     </nav>
 
-    <!-- CONTACT -->
-    <section class="contact section" id="contact">
+    <!-- ABOUT US  -->
+    <section class="about section" id="about">
       <div class="container">
         <div class="row">
-          <div class="ml-auto col-lg-5 col-md-6 col-12">
-            <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">
-              Feel free to ask anything
+          <!-- Club DESCRIPTION -->
+          <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-6 col-md-10 mx-auto col-12">
+            <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">
+              Welcome to AUS Sport Club!
             </h2>
 
-            <form
-              action="#"
-              method="post"
-              class="contact-form webform"
-              data-aos="fade-up"
-              data-aos-delay="400"
-              role="form"
-            >
-              <input
-                type="text"
-                class="form-control"
-                name="cf-name"
-                placeholder="Name"
-              />
+            <p data-aos="fade-up" data-aos-delay="400">
+              At AUS Sport Club, we are dedicated to promoting fitness, health,
+              and sportsmanship in our community. Our mission is to provide a
+              supportive environment for individuals of all skill levels to
+              achieve their fitness goals. Whether you're a beginner or an
+              experienced athlete, we offer a variety of programs and activities
+              designed to help you succeed.
+            </p>
 
-              <input
-                type="email"
-                class="form-control"
-                name="cf-email"
-                placeholder="Email"
-              />
-
-              <textarea
-                class="form-control"
-                rows="5"
-                name="cf-message"
-                placeholder="Message"
-              ></textarea>
-
-              <button
-                type="submit"
-                class="form-control"
-                id="submit-button"
-                name="submit"
-              >
-                Send Message
-              </button>
-            </form>
+            <p data-aos="fade-up" data-aos-delay="500">
+              We believe in the power of teamwork, discipline, and perseverance.
+              Our values include inclusivity, respect, and a commitment to
+              excellence in every aspect of our training and community-building
+              efforts. Join us as we build a stronger, healthier future
+              together.
+            </p>
           </div>
 
-          <div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
-            <h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">
-              Where you can <span>find us</span>
-            </h2>
+          <!-- TEAM  -->
+          <div class="col-lg-6 col-md-12 mt-5" id="team">
+            <h3
+              class="text-center mb-4"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              Meet Our Team
+            </h3>
+            <div class="row">
+              <!-- TRAINER 1 -->
+              <div
+                class="col-md-6 col-12 mb-4"
+                data-aos="fade-up"
+                data-aos-delay="700"
+              >
+                <div class="team-thumb">
+                  <img
+                    src="../public/images/team/team-image.jpg"
+                    class="img-fluid"
+                    alt="Trainer"
+                  />
+                  <div class="team-info d-flex flex-column">
+                    <h3>Mary Yan</h3>
+                    <span>Yoga Instructor</span>
+                    <p>
+                      Mary specializes in yoga and mindfulness, helping members
+                      find balance and flexibility in their routines.
+                    </p>
+                    <ul class="social-icon mt-3">
+                      <li><a href="#" class="fa fa-twitter"></a></li>
+                      <li><a href="#" class="fa fa-instagram"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
-            <p data-aos="fade-up" data-aos-delay="800">
-              <i class="fa fa-map-marker mr-1"></i> 107th Street x 65th Street,
-              Mandalay, Myanmar
-            </p>
-            <!-- How to change your own map point
-  1. Go to Google Maps
-  2. Click on your location point
-  3. Click "Share" and choose "Embed map" tab
-  4. Copy only URL and paste it within the src="" field below
--->
-            <div class="google-map" data-aos="fade-up" data-aos-delay="900">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.870262750139!2d96.10315237533713!3d21.939538479947586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30cb6d00437fc6d5%3A0x7b39ed9fcb701778!2sAuston%20Mandalay%20Campus!5e0!3m2!1sen!2smm!4v1732124295133!5m2!1sen!2smm"
-                width="600"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+              <!-- TRAINER 2 -->
+              <div
+                class="col-md-6 col-12 mb-4"
+                data-aos="fade-up"
+                data-aos-delay="800"
+              >
+                <div class="team-thumb">
+                  <img
+                    src="../public/images/team/team-image01.jpg"
+                    class="img-fluid"
+                    alt="Trainer"
+                  />
+                  <div class="team-info d-flex flex-column">
+                    <h3>Catherina</h3>
+                    <span>Body Trainer</span>
+                    <p>
+                      Catherina is an expert in strength training, helping
+                      individuals build muscle, endurance, and confidence.
+                    </p>
+                    <ul class="social-icon mt-3">
+                      <li><a href="#" class="fa fa-instagram"></a></li>
+                      <li><a href="#" class="fa fa-facebook"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -189,7 +207,7 @@
               >
             </p>
             <p>
-              <i class="fas fa-phone mr-2" style="color: #c60a11"></i>
+              <i class="fa fa-phone mr-2" style="color: #c60a11"></i>
               09 876 543 210
             </p>
           </div>

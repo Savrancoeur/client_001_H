@@ -48,17 +48,17 @@
               <a href="./home.php" class="nav-link smoothScroll">Home</a>
             </li>
             <li class="nav-item">
-              <a href="./event-details.html" class="nav-link smoothScroll"
+              <a href="event-details.php" class="nav-link smoothScroll"
                 >Events</a
               >
             </li>
             <li class="nav-item">
-              <a href="./about-us.html" class="nav-link smoothScroll"
+              <a href="about-us.php" class="nav-link smoothScroll"
                 >About Us</a
               >
             </li>
             <li class="nav-item">
-              <a href="./contact-us.html" class="nav-link smoothScroll"
+              <a href="contact-us.php" class="nav-link smoothScroll"
                 >Contact</a
               >
             </li>
@@ -72,7 +72,7 @@
               <a href="./register.php" class="nav-link">Register</a>
             </li>
             <li class="nav-item">
-              <a href="./home.php" class="nav-link">
+              <a href="./profile.php" class="nav-link">
                 <img
                   src="../public/images/auth/profile_icon.png"
                   style="width: 30px"

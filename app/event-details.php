@@ -45,20 +45,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a href="./home.html" class="nav-link smoothScroll">Home</a>
+              <a href="./home.php" class="nav-link smoothScroll">Home</a>
             </li>
             <li class="nav-item">
-              <a href="./event-details.html" class="nav-link smoothScroll"
+              <a href="event-details.php" class="nav-link smoothScroll"
                 >Events</a
               >
             </li>
             <li class="nav-item">
-              <a href="./about-us.html" class="nav-link smoothScroll"
+              <a href="about-us.php" class="nav-link smoothScroll"
                 >About Us</a
               >
             </li>
             <li class="nav-item">
-              <a href="./contact-us.html" class="nav-link smoothScroll"
+              <a href="contact-us.php" class="nav-link smoothScroll"
                 >Contact</a
               >
             </li>
@@ -66,13 +66,13 @@
 
           <ul class="navbar-nav ml-auto d-flex align-items-center">
             <li class="nav-item">
-              <a href="./login.html" class="nav-link">Login</a>
+              <a href="./login.php" class="nav-link">Login</a>
             </li>
             <li class="nav-item">
-              <a href="./register.html" class="nav-link">Register</a>
+              <a href="./register.php" class="nav-link">Register</a>
             </li>
             <li class="nav-item">
-              <a href="./home.html" class="nav-link">
+              <a href="./profile.php" class="nav-link">
                 <img
                   src="../public/images/auth/profile_icon.png"
                   style="width: 30px"
@@ -85,8 +85,6 @@
         </div>
       </div>
     </nav>
-
-
 
      <!-- HERO -->
      <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
