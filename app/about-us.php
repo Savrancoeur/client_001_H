@@ -1,3 +1,16 @@
+<?php
+
+// to show error codes
+ini_set("display_errors", 1);
+
+// call dbconnection file to use
+require_once("dbconnect.php");
+// call sessionconfig file to use its methods
+require_once("sessionconfig.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,158 +40,101 @@
   </head>
 
   <body>
-    <!-- MENU BAR -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+  <!-- MENU BAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
+          <a class="navbar-brand" href="./home.php">AUS Sport Club</a>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+          >
+              <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a href="./home.php" class="nav-link smoothScroll">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="event-details.php" class="nav-link smoothScroll"
-                >Events</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="about-us.php" class="nav-link smoothScroll"
-                >About Us</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="contact-us.php" class="nav-link smoothScroll"
-                >Contact</a
-              >
-            </li>
-          </ul>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mx-auto">
+                  <li class="nav-item">
+                      <a href="./home.php" class="nav-link smoothScroll">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="events.php" class="nav-link smoothScroll"
+                      >Events</a
+                      >
+                  </li>
+                  <li class="nav-item">
+                      <a href="about-us.php" class="nav-link smoothScroll"
+                      >About Us</a
+                      >
+                  </li>
+                  <li class="nav-item">
+                      <a href="contact-us.php" class="nav-link smoothScroll"
+                      >Contact</a
+                      >
+                  </li>
+                  <li class="nav-item">
+                      <a href="past-events.php" class="nav-link smoothScroll"
+                      >Memories</a>
+                  </li>
+              </ul>
 
-          <ul class="navbar-nav ml-auto d-flex align-items-center">
-            <li class="nav-item">
-              <a href="./login.php" class="nav-link">Login</a>
-            </li>
-            <li class="nav-item">
-              <a href="./register.php" class="nav-link">Register</a>
-            </li>
-            <li class="nav-item">
-              <a href="./profile.php" class="nav-link">
-                <img
-                  src="../public/images/auth/profile_icon.png"
-                  style="width: 30px"
-                  alt="Profile"
-                  class="profile-pic"
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
+              <ul class="navbar-nav ml-auto d-flex align-items-center">
+                  <?php if (verifysession('email')) { ?>
+                      <li class="nav-item">
+                          <a href="./logout.php" class="nav-link">Logout</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="./profile.php" class="nav-link">
+                              <img
+                                      src="../public/images/auth/profile_icon.png"
+                                      style="width: 30px"
+                                      alt="Profile"
+                                      class="profile-pic"
+                              />
+                          </a>
+                      </li>
+                  <?php } else { ?>
+                      <li class="nav-item">
+                          <a href="./login.php" class="nav-link">Login</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="./register.php" class="nav-link">Register</a>
+                      </li>
+                  <?php } ?>
+              </ul>
+          </div>
       </div>
-    </nav>
+  </nav>
 
     <!-- ABOUT US  -->
     <section class="about section" id="about">
       <div class="container">
         <div class="row">
           <!-- Club DESCRIPTION -->
-          <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-6 col-md-10 mx-auto col-12">
-            <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">
-              Welcome to AUS Sport Club!
-            </h2>
+          <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-6 col-md-10 mx-auto col-12" id="club-desc">
+            <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300" id="welcome-title"></h2>
 
-            <p data-aos="fade-up" data-aos-delay="400">
-              At AUS Sport Club, we are dedicated to promoting fitness, health,
-              and sportsmanship in our community. Our mission is to provide a
-              supportive environment for individuals of all skill levels to
-              achieve their fitness goals. Whether you're a beginner or an
-              experienced athlete, we offer a variety of programs and activities
-              designed to help you succeed.
-            </p>
+            <p data-aos="fade-up" data-aos-delay="400" id="welcome-description"></p>
 
-            <p data-aos="fade-up" data-aos-delay="500">
-              We believe in the power of teamwork, discipline, and perseverance.
-              Our values include inclusivity, respect, and a commitment to
-              excellence in every aspect of our training and community-building
-              efforts. Join us as we build a stronger, healthier future
-              together.
-            </p>
+            <p data-aos="fade-up" data-aos-delay="500" id="welcome-values"></p>
           </div>
 
           <!-- TEAM  -->
-          <div class="col-lg-6 col-md-12 mt-5" id="team">
+          <div class="col-lg-6 col-md-12 mt-5" id="team-section">
             <h3
               class="text-center mb-4"
               data-aos="fade-up"
               data-aos-delay="600"
+              id="team-title"
             >
               Meet Our Team
             </h3>
-            <div class="row">
-              <!-- TRAINER 1 -->
-              <div
-                class="col-md-6 col-12 mb-4"
-                data-aos="fade-up"
-                data-aos-delay="700"
-              >
-                <div class="team-thumb">
-                  <img
-                    src="../public/images/team/team-image.jpg"
-                    class="img-fluid"
-                    alt="Trainer"
-                  />
-                  <div class="team-info d-flex flex-column">
-                    <h3>Mary Yan</h3>
-                    <span>Yoga Instructor</span>
-                    <p>
-                      Mary specializes in yoga and mindfulness, helping members
-                      find balance and flexibility in their routines.
-                    </p>
-                    <ul class="social-icon mt-3">
-                      <li><a href="#" class="fa fa-twitter"></a></li>
-                      <li><a href="#" class="fa fa-instagram"></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <!-- TRAINER 2 -->
-              <div
-                class="col-md-6 col-12 mb-4"
-                data-aos="fade-up"
-                data-aos-delay="800"
-              >
-                <div class="team-thumb">
-                  <img
-                    src="../public/images/team/team-image01.jpg"
-                    class="img-fluid"
-                    alt="Trainer"
-                  />
-                  <div class="team-info d-flex flex-column">
-                    <h3>Catherina</h3>
-                    <span>Body Trainer</span>
-                    <p>
-                      Catherina is an expert in strength training, helping
-                      individuals build muscle, endurance, and confidence.
-                    </p>
-                    <ul class="social-icon mt-3">
-                      <li><a href="#" class="fa fa-instagram"></a></li>
-                      <li><a href="#" class="fa fa-facebook"></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+            <div class="row" id="team-container">
             </div>
           </div>
         </div>
@@ -250,5 +206,47 @@
 
     <!-- Custom JS link -->
     <script src="../js/app.js"></script>
+    <script type="text/javascript">
+        fetch('about-us.json')
+            .then(response => response.json())
+            .then(data => {
+                // Populate the Welcome Section
+                document.getElementById('welcome-title').innerText = data.welcomeSection.title;
+                document.getElementById('welcome-description').innerText = data.welcomeSection.description;
+                document.getElementById('welcome-values').innerText = data.welcomeSection.values;
+
+                // Populate the Team Section
+                const teamContainer = document.getElementById('team-container');
+                data.teamSection.members.forEach(member => {
+                    const memberCard = `
+              <div
+                class="col-md-6 col-12 mb-4"
+                data-aos="fade-up"
+                data-aos-delay="700"
+              >
+                <div class="team-thumb">
+                  <img
+                    src="../${member.image}"
+                    class="img-fluid"
+                    alt="${member.name}"
+                  />
+                  <div class="team-info d-flex flex-column">
+                    <h3>${member.name}</h3>
+                    <span>${member.role}</span>
+                    <p>${member.description}
+                    </p>
+                    <ul class="social-icon mt-3">
+                      <li><a href="#" class="fa fa-twitter"></a></li>
+                      <li><a href="#" class="fa fa-instagram"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>`;
+                    teamContainer.innerHTML += memberCard;
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+    </script>
   </body>
 </html>

@@ -1,3 +1,21 @@
+<?php
+
+// to show error codes
+ini_set("display_errors", 1);
+
+// call dbconnection file to use
+require_once("dbconnect.php");
+// call sessionconfig file to use its methods
+require_once("sessionconfig.php");
+
+$message = "";
+
+if (verifysession("send-message-success")) {
+    $message = getsession("send-message-success");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +41,14 @@
     <!-- Custom CSS link -->
     <link rel="stylesheet" href="../css/style.css"/>
     <link rel="stylesheet" href="../css/contact-us.css"/>
+    <link rel="stylesheet" href="../css/toast.css"/>
 </head>
 
 <body>
 <!-- MENU BAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
+        <a class="navbar-brand" href="./home.php">AUS Sport Club</a>
 
         <button
                 class="navbar-toggler"
@@ -49,7 +68,7 @@
                     <a href="./home.php" class="nav-link smoothScroll">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="event-details.php" class="nav-link smoothScroll"
+                    <a href="events.php" class="nav-link smoothScroll"
                     >Events</a
                     >
                 </li>
@@ -63,25 +82,35 @@
                     >Contact</a
                     >
                 </li>
+                <li class="nav-item">
+                    <a href="past-events.php" class="nav-link smoothScroll"
+                    >Memories</a>
+                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto d-flex align-items-center">
-                <li class="nav-item">
-                    <a href="./login.php" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="./register.php" class="nav-link">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a href="./profile.php" class="nav-link">
-                        <img
-                                src="../public/images/auth/profile_icon.png"
-                                style="width: 30px"
-                                alt="Profile"
-                                class="profile-pic"
-                        />
-                    </a>
-                </li>
+                <?php if (verifysession('email')) { ?>
+                    <li class="nav-item">
+                        <a href="./logout.php" class="nav-link">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./profile.php" class="nav-link">
+                            <img
+                                    src="../public/images/auth/profile_icon.png"
+                                    style="width: 30px"
+                                    alt="Profile"
+                                    class="profile-pic"
+                            />
+                        </a>
+                    </li>
+                <?php } else { ?>
+                    <li class="nav-item">
+                        <a href="./login.php" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./register.php" class="nav-link">Register</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </div>
@@ -218,6 +247,26 @@
     </div>
 </footer>
 
+<?php if ($message != null) { ?>
+    <div class="toasts actives">
+        <div class="toast-contents">
+            <i class="fas fa-check check"></i>
+
+            <div class="message">
+                <span class="text text-1">Success</span>
+                <span class="text text-2"><?php echo $message ?></span>
+            </div>
+        </div>
+        <i class="fas fa-times closes"></i>
+
+        <div class="progress actives"></div>
+    </div>
+    <?php
+    unsetsession("send-message-success");
+    $message = '';
+}
+?>
+
 <!-- AOS JS link -->
 <script src="../public/libs/js/aos.js"></script>
 
@@ -232,5 +281,6 @@
 
 <!-- Custom JS link -->
 <script src="../js/app.js"></script>
+<script src="../js/toast.js"></script>
 </body>
 </html>

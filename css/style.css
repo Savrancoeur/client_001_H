@@ -1,7 +1,11 @@
+/*---------------------------------------
+    style.css is intended to be used for user interface and non-admin pages
+-----------------------------------------*/
+
 @font-face {
   font-family: "Plain";
   src: url("../public/fonts/Plain-Regular.woff2") format("woff2"),
-    url("../public/fonts/Plain-Regular.woff") format("woff");
+  url("../public/fonts/Plain-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -9,7 +13,7 @@
 @font-face {
   font-family: "Plain";
   src: url("../public/fonts/Plain-Light.woff2") format("woff2"),
-    url("../public/fonts/Plain-Light.woff") format("woff");
+  url("../public/fonts/Plain-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
@@ -17,7 +21,7 @@
 @font-face {
   font-family: "Plain";
   src: url("../public/fonts/Plain-Bold.woff2") format("woff2"),
-    url("../public/fonts/Plain-Bold.woff") format("woff");
+  url("../public/fonts/Plain-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
@@ -171,6 +175,14 @@ strong {
      GENERAL               
   -----------------------------------------*/
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -199,37 +211,56 @@ a:focus {
   text-decoration: none;
 }
 
-/* BG OVERLAY */
-
-.bg-overlay {
-  background: var(--dark-color);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.85;
-}
-
 /*---------------------------------------
-     MODAL              
-  -----------------------------------------*/
+   ALERT              
+-----------------------------------------*/
 
-.modal-content {
-  padding: 2rem 3rem;
+.alert {
+  display: flex;
+  align-items: center;
+  border: 2px solid #198754; /* Bootstrap's green color */
+  background-color: #198754; /* Bootstrap's green success color */
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-.modal-header,
-.modal-body,
-.modal-footer {
-  border: 0;
-  padding: 0;
+.alert .alert-content {
+  flex-grow: 1;
 }
 
-.membership-form a {
-  color: var(--primary-color);
+.alert .btn-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.alert .btn-close:hover {
+  color: #d4d4d4;
+}
+
+.alert i {
+  color: #fff;
+}
+
+.alert-dismissible {
+  padding-right: 40px;
+}
+
+.alert-dismissible .btn-close {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  line-height: 1;
 }
 
 /*---------------------------------------
@@ -282,15 +313,6 @@ a:focus {
 
 .social-icon li a:hover {
   color: var(--primary-color);
-}
-
-/*---------------------------------------
-  FEATURE          
------------------------------------------*/
-
-.feature {
-  background: var(--dark-color);
-  padding: 5rem 0;
 }
 
 /*---------------------------------------
@@ -356,7 +378,7 @@ a:focus {
   transition: top 300ms 50ms ease, -webkit-transform 300ms 350ms ease;
   transition: top 300ms 50ms ease, transform 300ms 350ms ease;
   transition: top 300ms 50ms ease, transform 300ms 350ms ease,
-    -webkit-transform 300ms 350ms ease;
+  -webkit-transform 300ms 350ms ease;
   top: 0;
 }
 
@@ -382,7 +404,7 @@ a:focus {
   transition: top 300ms 350ms ease, -webkit-transform 300ms 50ms ease;
   transition: top 300ms 350ms ease, transform 300ms 50ms ease;
   transition: top 300ms 350ms ease, transform 300ms 50ms ease,
-    -webkit-transform 300ms 50ms ease;
+  -webkit-transform 300ms 50ms ease;
   position: absolute;
   right: 0;
   left: 0;
@@ -400,18 +422,26 @@ a:focus {
   top: 8px;
 }
 
-/*---------------------------------------
-   HERO              
------------------------------------------*/
+.navbar-nav .nav-item.dropdown .dropdown-menu {
+  background-color: #252629;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+}
 
-.hero {
-  background-image: url("../public/images/hero-bg.jpg");
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
-  vertical-align: middle;
-  min-height: 100vh;
-  position: relative;
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  color: #f7f8f7;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.dropdown-item:hover {
+  background-color: #a47800;
+  color: #090806;
 }
 
 /*---------------------------------------

@@ -49,7 +49,7 @@ function loginveriy($getemail,$getpassword){
                 redirectto('home.php');   
             }
         }else{
-            setsession('login-error', "Your email might be incorrect");
+            setsession('login-error', "Your email and password   might be incorrect");
             header("Location:login.php");
         }
 

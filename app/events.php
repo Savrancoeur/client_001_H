@@ -8,34 +8,35 @@ require_once("dbconnect.php");
 // call sessionconfig file to use its methods
 require_once("sessionconfig.php");
 
-$event = null;
+$showevents = null;
 
-if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['eventid'])) {
-    setsession('eventid', $_GET['eventid']);
-}
-
-if(!verifysession('eventid')){
-    redirectto('events.php');
-}
-
-function getevent($eventid){
+function getevents(){
     try{
         $conn = $GLOBALS['conn'];
-        $stmt = $conn->prepare("SELECT * FROM events WHERE id=?");
-        $stmt->execute([$eventid]);
-        return $stmt->fetch();
+        $stmt = $conn->prepare("SELECT * FROM events ORDER BY status DESC");
+        $stmt->execute();
+        return $stmt->fetchAll();
     }catch(PDOException $e){
         echo $e->getMessage();
     }
 }
 
-$event = getevent($_SESSION['eventid']);
-//var_dump($event);
+function getsportname($id){
+    try{
+        $conn = $GLOBALS['conn'];
+        $stmt = $conn->prepare("SELECT name FROM sports WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }catch (PDOException $e){
+        echo $e->getMessage();
+    }
+}
 
-
-
+$showevents = getevents();
+//var_dump($showevents);
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -135,45 +136,70 @@ $event = getevent($_SESSION['eventid']);
     </div>
 </nav>
 
-     <section class="feature my-5" id="feature">
-        <div class="container py-5 my-5">
-            <div class="row">
+     <!-- HERO -->
+     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
-                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-6 col-md-6 col-12">
-                    <h2 class="mb-3 text-white" data-aos="fade-up"><?php echo $event['name'] ?></h2>
-                    <p data-aos="fade-up" data-aos-delay="200"><?php echo $event['description'] ?></p>
+            <div class="bg-overlay"></div>
 
-                    <div>
+               <div class="container">
+                    <div class="row">
 
-                        <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Event Date & Time</h2>
+                         <div class="col-lg-8 col-md-10 mx-auto col-12">
+                              <div class="hero-text mt-5 text-center">
 
-                        <p data-aos="fade-up" data-aos-delay="700">Date : <?php echo date("F j, Y", strtotime($event['date'])); ?></p>
+                                    <h6 data-aos="fade-up" data-aos-delay="300">new way to build a healthy lifestyle!</h6>
 
-                        <p data-aos="fade-up" data-aos-delay="800">Time : <?php echo $event['time'] ?></p>
-                        <p data-aos="fade-up" data-aos-delay="900">Last Registraion : <?php echo date("F j, Y", strtotime($event['duedate'])); ?></p>
+                                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Participate In Our Sport Events</h1>
+
+                                    <a href="#events" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">Browse Events</a>
+                                   
+                              </div>
+                         </div>
+
                     </div>
+               </div>
+     </section>
 
-                    <div>
-                        <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Limitation</h2>
+     <!-- CLASS -->
+     <section class="class section" id="events">
+               <div class="container">
+                    <div class="row">
 
-                        <p data-aos="fade-up" data-aos-delay="700">Age Limit : <?php echo ucwords($event['agegroup']) ?></p>
+                            <div class="col-lg-12 col-12 text-center mb-5">
+                                <h6 data-aos="fade-up">Get Healthy Lifestyle</h6>
 
-                        <p data-aos="fade-up" data-aos-delay="800">Participant Limit : <?php echo $event['participantslimit'] ?> People</p>
+                                <h2 data-aos="fade-up" data-aos-delay="200">Enjoy Our Sports Events</h2>
+                             </div>
+                            <?php $delay = 400; ?>
+                            <?php foreach ($showevents as $showevent){ ?>
+                                <div class="mb-5 mt-lg-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="<?php echo $delay ?>">
+                                    <div class="class-thumb">
+                                        <div style="width: 100%; height: 280px; position: relative">
+                                            <span class="btn btn-danger" style="font-size: 12px; position:absolute; right: 10px;top: 5px;"><?php echo ucwords($showevent['status']) ?></span>
+                                            <img src="../<?php echo $showevent['image'] ?>" style="width: 100%;height: 100%; object-fit: cover;" alt="Class">
+                                        </div>
+                                        <div class="class-info">
+                                            <h3 class="mb-1"><?php echo ucwords($showevent['name']) ?></h3>
+
+                                            <span><strong>Sport Type</strong> - <?php echo getsportname($showevent['sports_id'])['name'] ?></span>
+
+                                            <p class="mt-3"><?php echo ucwords($showevent['description']) ?></p>
+
+                                            <a href="event-details.php?eventid=<?php echo $showevent['id'] ?>" class="btn btn-sm text-white" style="background-color: #c60a11">View Detail</a>
+
+                                            <?php if(verifysession('email')){ ?>
+                                                <a href="profile.php?eventid=<?php echo $showevent['id'] ?>" class="btn btn-sm text-white" style="background-color: #c60a11">REGISTER</a>
+                                            <?php }else{ ?>
+                                                <a href="javascript:void(0);" class="btn btn-sm text-white" style="background-color: #c60a11">REGISTER</a>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php $delay += 50; ?>
+                            <?php } ?>
+
                     </div>
-
-                    <?php if(verifysession('email')){ ?>
-                        <a href="profile.php?eventid=<?php echo $event['id'] ?>" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-toggle="modal" data-target="#membershipForm">Registraion Link</a>
-                    <?php }else{ ?>
-                        <a href="javascript:void(0);" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-toggle="modal" data-target="#membershipForm">Registraion Link</a>
-                    <?php } ?>
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-12">
-                    <img src="./../public/images/event/football1.jpg" style="width: 100%; height: 100%;object-fit: cover"/>
-                </div>
-
-            <div>
-        </div>
+               </div>
      </section>
 
     <!-- FOOTER -->
