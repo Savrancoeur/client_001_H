@@ -2,6 +2,8 @@
 
 
 // to show error codes
+use function mysql_xdevapi\getSession;
+
 ini_set("display_errors", 1);
 
 // call dbconnection file to use
@@ -11,6 +13,8 @@ require_once("sessionconfig.php");
 
 // making default time zone
 date_default_timezone_set("Asia/Yangon");
+
+$date = date("Y-m-d");
 
 $user = null;
 $message = "";
@@ -45,6 +49,52 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update-profile'])){
 
 }
 
+if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['eventid'])){
+    setsession('eventid', $_GET['eventid']);
+}
+
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])){
+    $userid = $_POST['userid'];
+    $eventid = $_POST['eventid'];
+    $count = $_POST["count"];
+    if(checkcount($eventid,$count)){
+        try{
+            $conn = $GLOBALS['conn'];
+            $sql = "UPDATE events SET remainlimit=remainlimit-? WHERE id=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$count,$eventid]);
+
+            $sql = "INSERT INTO eventregistrations (users_id,events_id,count,date) VALUES(?,?,?,?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$userid,$eventid,$count,$date]);
+
+            setsession('register-success','Your registration has been completed');
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+    }else{
+        setsession('count-invalid',"Your participant count is greater than remain limit.");
+    }
+}
+
+function checkcount($eventid,$count){
+    try{
+        $conn = $GLOBALS['conn'];
+        $sql = "SELECT * FROM events WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$eventid]);
+        $event = $stmt->fetch();
+        $remaincount = $event["remainlimit"];
+        if($count <= $remaincount){
+            return true;
+        }else{
+            return false;
+        }
+    }catch (PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
 function getusers($email){
     try{
         $conn = $GLOBALS['conn'];
@@ -56,15 +106,58 @@ function getusers($email){
     }
 }
 
+function getevents($date){
+    try{
+        $conn = $GLOBALS['conn'];
+        $stmt = $conn->prepare("SELECT * FROM events WHERE duedate >= ? AND remainlimit <> ? ");
+        $stmt->execute([$date,0]);
+        return $stmt->fetchAll();
+    }catch (PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+function getevent($eventid){
+    try{
+        $conn = $GLOBALS['conn'];
+        $stmt = $conn->prepare("SELECT * FROM events WHERE id=?");
+        $stmt->execute([$eventid]);
+        $event = $stmt->fetch();
+        return $event;
+    }catch (PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
+function getregistrations($userid){
+    try{
+        $conn = $GLOBALS['conn'];
+        $stmt = $conn->prepare("SELECT DISTINCT events_id, date FROM eventregistrations WHERE users_id=?");
+        $stmt->execute([$userid]);
+        return $stmt->fetchAll();
+    }catch (PDOException $e){
+        echo $e->getMessage();
+    }
+}
+
 if (verifysession("profile-update")) {
-    $message = getsession("profile-update");
+    $message = $_SESSION["profile-update"];
+}elseif(verifysession("register-success")){
+    $message = $_SESSION["register-success"]    ;
+}elseif (verifysession("count-invalid")){
+    $message = $_SESSION['count-invalid'];
 }
 
 
 $user = getusers($_SESSION['email']);
+$events = getevents($date);
+$registrations = getregistrations($user["id"]);
 
 //var_dump($user);
 //echo $user['id'];
+//var_dump($events);
+
+//var_dump($registrations);
 
 ?>
 <!DOCTYPE html>
@@ -187,41 +280,44 @@ $user = getusers($_SESSION['email']);
             <div class="col-lg-6 col-md-12 mb-4">
                 <div class="event-card">
                     <h3 class="event-title">Register for Upcoming Event</h3>
-                    <form
+                    <form action="profile.php" method="POST"
                             id="event-registration-form"
-                            class="event-registration-form"
-                    >
+                            class="event-registration-form">
+                        <input type="hidden" name="userid" value="<?php echo $user['id'] ?>"/>
                         <div class="form-group">
                             <label for="event-name">Select Event</label>
-                            <select class="form-control" id="event-name" required>
-                                <option value="" disabled selected>Select an Event</option>
-                                <option value="1">Annual Sports Day 2024</option>
-                                <option value="2">Summer Soccer League</option>
-                                <option value="3">Winter Training Camp</option>
+                            <select class="form-control" id="event-name" name="eventid" required>
+                                <?php if(verifysession('eventid')){ ?>
+                                    <?php foreach ($events as $event){ ?>
+                                        <?php if($event['id'] == $_SESSION['eventid']){ ?>
+                                            <option value="<?php echo $event['id'] ?>" selected><?php echo $event['name'] ?></option>
+                                        <?php }else{?>
+                                            <option value="<?php echo $event['id'] ?>"><?php echo $event['name'] ?></option>
+                                        <?php } ?>
+                                    <?php }?>
+                                <?php } else{ ?>
+                                    <option disabled selected>Select an Event</option>
+                                    <?php foreach ($events as $event){ ?>
+                                        <option value="<?php echo $event['id'] ?>"><?php echo $event['name'] ?></option>
+                                    <?php }?>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="participant-name">Your Name</label>
+                            <label for="participant-email">Participant Count</label>
                             <input
-                                    type="text"
-                                    class="form-control"
-                                    id="participant-name"
-                                    placeholder="Enter your name"
-                                    required
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="participant-email">Your Email</label>
-                            <input
-                                    type="email"
+                                    type="number"
                                     class="form-control"
                                     id="participant-email"
+                                    name="count"
+                                    min="1"
+                                    max="20"
                                     placeholder="Enter your email"
                                     required
                             />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn custom-btn text-white">
+                            <button type="submit" name="register" class="btn custom-btn text-white">
                                 Register
                             </button>
                         </div>
@@ -232,23 +328,21 @@ $user = getusers($_SESSION['email']);
             <!-- Manage Registrations -->
             <div class="col-lg-6 col-md-12 mb-4">
                 <div class="event-card">
-                    <h3 class="event-title">Manage Your Registrations</h3>
+                    <h3 class="event-title">Your Registrations</h3>
                     <div id="manage-registrations">
                         <p>You are currently registered for the following events:</p>
                         <ul>
-                            <li>
-                                Annual Sports Day 2024
-                                <button class="btn btn-danger btn-sm">Cancel</button>
-                            </li>
-                            <li>
-                                Summer Soccer League
-                                <button class="btn btn-danger btn-sm">Cancel</button>
-                            </li>
+                            <?php foreach ($registrations as $registration){
+                                $checkevent = getevent($registration['events_id']);
+                            ?>
+                                <?php if($checkevent['status'] == "upcoming"){ ?>
+                                    <li>
+                                        <?php echo ucwords($checkevent['name']) ?>
+                                        <button><?php echo date("F j, Y", strtotime($registration['date']));  ?></button>
+                                    </li>
+                                <?php } ?>
+                            <?php } ?>
                         </ul>
-                        <p>
-                            To manage your registrations, click the "Cancel" button next
-                            to an event.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -261,9 +355,15 @@ $user = getusers($_SESSION['email']);
                     <h3 class="event-title">Your Participation History</h3>
                     <p>Here’s a list of events you’ve participated in:</p>
                     <ul id="participation-history">
-                        <li>Annual Sports Day 2023 (Completed)</li>
-                        <li>Winter Training Camp 2022 (Completed)</li>
-                        <li>Summer Soccer League 2021 (Completed)</li>
+                        <?php foreach ($registrations as $registration){
+                            $checkevent = getevent($registration['events_id']);
+                            ?>
+                            <?php if($checkevent['status'] == "finished"){ ?>
+                                <li>
+                                    <?php echo ucwords($checkevent['name']); ?> (Completed at <?php echo date("F j, Y", strtotime($registration['date'])); ?>)
+                                </li>
+                            <?php } ?>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
@@ -325,10 +425,16 @@ $user = getusers($_SESSION['email']);
 <?php if ($message != null) { ?>
     <div class="toasts actives">
         <div class="toast-contents">
-            <i class="fas fa-check check"></i>
-
+            <i class="fas <?php if(verifysession('count-invalid')){ echo "fa-times bg-danger"; }else{ echo "fa-check";}?> check"></i>
             <div class="message">
-                <span class="text text-1">Success</span>
+                <span class="text text-1">
+                    <?php if(verifysession('count-invalid')){
+                        echo "Failed";
+                    }else{
+                        echo "Success";
+                    }
+                    ?>
+                </span>
                 <span class="text text-2"><?php echo $message ?></span>
             </div>
         </div>
@@ -338,6 +444,8 @@ $user = getusers($_SESSION['email']);
     </div>
     <?php
     unsetsession("profile-update");
+    unsetsession("register-success");
+    unsetsession("count-invalid");
     $message = '';
 }
 ?>

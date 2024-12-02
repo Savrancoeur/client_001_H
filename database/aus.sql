@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 02, 2024 at 01:00 PM
+-- Generation Time: Dec 02, 2024 at 05:04 PM
 -- Server version: 8.0.40-0ubuntu0.24.04.1
 -- PHP Version: 8.3.6
 
@@ -40,7 +40,11 @@ CREATE TABLE `eventregistrations` (
 --
 
 INSERT INTO `eventregistrations` (`id`, `users_id`, `events_id`, `date`, `count`) VALUES
-(1, 2, 2, '2024-12-02', 2);
+(1, 2, 2, '2024-12-02', 2),
+(2, 2, 8, '2024-12-02', 5),
+(3, 2, 9, '2024-12-02', 10),
+(4, 2, 9, '2024-12-02', 10),
+(5, 2, 7, '2024-12-02', 3);
 
 -- --------------------------------------------------------
 
@@ -69,13 +73,13 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `name`, `image`, `description`, `participantslimit`, `remainlimit`, `date`, `time`, `duedate`, `location`, `agegroup`, `status`, `sports_id`) VALUES
-(1, 'ddd', 'public/images/event/aaaaaaaa-Saturday-30th-November-2024-624896054.png', 'dddd', 20, 20, '2024-12-14', '09:57:00', '2024-12-09', 'mandalay', 'all', 'upcoming', 3),
-(2, 'agaaga', 'public/images/event/agaaga-Saturday-30th-November-2024-1849717928.jpg', 'etetetet', 44, 42, '2024-12-06', '21:03:00', '2024-12-02', 'etet', 'teen', 'upcoming', 2),
+(1, 'ddd', 'public/images/event/aaaaaaaa-Saturday-30th-November-2024-624896054.png', 'dddd', 20, 0, '2024-12-14', '09:57:00', '2024-12-09', 'mandalay', 'all', 'upcoming', 3),
+(2, 'agaaga', 'public/images/event/agaaga-Saturday-30th-November-2024-1849717928.jpg', 'etetetet', 44, 42, '2024-12-06', '21:03:00', '2024-12-01', 'etet', 'teen', 'upcoming', 2),
 (3, 'bbbbbb', 'public/images/event/bbbbbb-Saturday-30th-November-2024-1282975865.jpg', 'cccccc', 33, 33, '2024-12-14', '00:11:00', '2024-12-04', 'mandlaya', 'teen', 'upcoming', 4),
 (4, 'bbbbbb', 'public/images/event/bbbbbb-Saturday-30th-November-2024-736434963.jpg', 'cccccc', 33, 33, '2024-12-14', '00:11:00', '2024-12-04', 'mandlaya', 'teen', 'finished', 4),
-(7, 'Football Tournament 2024 Winter', 'public/images/event/e242424-Monday-2nd-December-2024-38984411.jpeg', 'For over 30 years, we’ve been offering unforgettable football tournaments and tour experiences in the UK and abroad. Whether it’s a weekend tournament or a tailor-made tour playing against local competition, you’ll receive an exceptional experience from start to finish.', 33, 33, '2024-12-21', '00:24:00', '2024-12-11', 'Bagan', 'adult', 'finished', 8),
-(8, 'champion league', 'public/images/event/champion league-Monday-2nd-December-2024-679834568.jpg', 'football tournament', 30, 30, '2024-12-28', '15:35:00', '2024-12-12', 'Main Stadium', 'teen', 'upcoming', 3),
-(9, 'UEFA', 'public/images/event/UEFA-Monday-2nd-December-2024-469161510.jpg', 'Football Tournament AT Myanmar ', 330, 330, '2025-01-11', '16:13:00', '2024-12-27', 'Second Stadium', 'child', 'finished', 7);
+(7, 'Football Tournament 2024 Winter', 'public/images/event/e242424-Monday-2nd-December-2024-38984411.jpeg', 'For over 30 years, we’ve been offering unforgettable football tournaments and tour experiences in the UK and abroad. Whether it’s a weekend tournament or a tailor-made tour playing against local competition, you’ll receive an exceptional experience from start to finish.', 33, 30, '2024-12-21', '00:24:00', '2024-12-11', 'Bagan', 'adult', 'finished', 8),
+(8, 'champion league', 'public/images/event/champion league-Monday-2nd-December-2024-679834568.jpg', 'football tournament', 30, 25, '2024-12-28', '15:35:00', '2024-12-12', 'Main Stadium', 'teen', 'upcoming', 3),
+(9, 'UEFA Footbal Competition 2025   ', 'public/images/event/UEFA-Monday-2nd-December-2024-469161510.jpg', 'Football Tournament AT Myanmar ', 330, 310, '2025-01-11', '16:13:00', '2024-12-27', 'Second Stadium', 'child', 'finished', 7);
 
 -- --------------------------------------------------------
 
@@ -208,7 +212,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `eventregistrations`
 --
 ALTER TABLE `eventregistrations`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `events`
