@@ -1,319 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>AUS Sport Club</title>
 
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
+<head>
+  <title>AUS Sport Club</title>
 
-    <!-- Bootstrap CSS link -->
-    <link rel="stylesheet" href="../public/libs/css/bootstrap.min.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-    <!-- Font Awesome CSS link -->
-    <link
-      rel="stylesheet"
-      href="../public/libs/font-awesome-5/css/fontawesome-all.min.css"
-    />
+  <!-- Bootstrap CSS link -->
+  <link rel="stylesheet" href="../public/libs/css/bootstrap.min.css" />
 
-    <!-- AOS CSS Link -->
-    <link rel="stylesheet" href="../public/libs/css/aos.css" />
+  <!-- Font Awesome CSS link -->
+  <link rel="stylesheet" href="../public/libs/font-awesome-5/css/fontawesome-all.min.css" />
 
-    <!-- Custom CSS link -->
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/about-us.css" />
-  </head>
+  <!-- AOS CSS Link -->
+  <link rel="stylesheet" href="../public/libs/css/aos.css" />
 
-  <body>
-    <!-- MENU BAR -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-        <!-- Navbar Brand -->
-        <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
+  <!-- Custom CSS link -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/about-us.css" />
+</head>
 
-        <!-- Navbar Toggle Button (Burger Menu) -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<body>
+  <!-- MENU BAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <!-- Navbar Brand -->
+      <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
 
-        <!-- Navbar Links -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <!-- Left Side Links -->
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a href="./home.php" class="nav-link smoothScroll">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="./event-details.html" class="nav-link smoothScroll"
-                >Events</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="./about-us.html" class="nav-link smoothScroll"
-                >About Us</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="./contact-us.html" class="nav-link smoothScroll"
-                >Contact</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="./past-events.html" class="nav-link smoothScroll"
-                >Memories</a
-              >
-            </li>
-          </ul>
+      <!-- Navbar Toggle Button (Burger Menu) -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-          <ul class="navbar-nav ml-auto d-flex align-items-center">
-            <li class="nav-item">
-              <a href="./login.html" class="nav-link">Login</a>
-            </li>
-            <li class="nav-item">
-              <a href="./register.html" class="nav-link">Register</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                href="#"
-                class="nav-link"
-                id="profileDropdown"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <img
-                  src="../public/images/auth/profile_icon.png"
-                  style="width: 30px"
-                  alt="Profile"
-                  class="profile-pic"
-                />
-              </a>
-              <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="./admin/dashboard.html">Admin</a>
-                <a class="dropdown-item" href="./profile.html">Member</a>
-              </div>
-            </li>
-          </ul>
-        </div>
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Left Side Links -->
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a href="./home.php" class="nav-link smoothScroll">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="./event-details.html" class="nav-link smoothScroll">Events</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.php" class="nav-link smoothScroll">News & Announcements</a>
+          </li>
+          <li class="nav-item">
+            <a href="about-us.php" class="nav-link smoothScroll">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact-us.html" class="nav-link smoothScroll">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
+          <li class="nav-item">
+            <a href="./login.html" class="nav-link">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="./register.html" class="nav-link">Register</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <img src="../public/images/auth/profile_icon.png" style="width: 30px" alt="Profile"
+                class="profile-pic" />
+            </a>
+            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" href="./admin/dashboard.html">Admin</a>
+              <a class="dropdown-item" href="./profile.html">Member</a>
+            </div>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- ABOUT US -->
-    <section class="about section" id="about">
-      <div class="container">
-        <div class="row">
-          <!-- Club DESCRIPTION -->
-          <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-6 col-md-10 mx-auto col-12">
-            <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">
-              Welcome to AUS Sport Club!
-            </h2>
+  <!-- ABOUT US -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="row">
+        <!-- Club DESCRIPTION -->
+        <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-6 col-md-10 mx-auto col-12">
+          <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">
+            Welcome to AUS Sport Club!
+          </h2>
 
-            <p data-aos="fade-up" data-aos-delay="400">
-              At AUS Sport Club, we are dedicated to promoting fitness, health,
-              and sportsmanship in our community. Our mission is to provide a
-              supportive environment for individuals of all skill levels to
-              achieve their fitness goals. Whether you're a beginner or an
-              experienced athlete, we offer a variety of programs and activities
-              designed to help you succeed.
-            </p>
+          <p data-aos="fade-up" data-aos-delay="400">
+            At AUS Sport Club, we are dedicated to promoting fitness, health,
+            and sportsmanship in our community. Our mission is to provide a
+            supportive environment for individuals of all skill levels to
+            achieve their fitness goals. Whether you're a beginner or an
+            experienced athlete, we offer a variety of programs and activities
+            designed to help you succeed.
+          </p>
 
-            <p data-aos="fade-up" data-aos-delay="500">
-              We believe in the power of teamwork, discipline, and perseverance.
-              Our values include inclusivity, respect, and a commitment to
-              excellence in every aspect of our training and community-building
-              efforts. Join us as we build a stronger, healthier future
-              together.
-            </p>
-          </div>
+          <p data-aos="fade-up" data-aos-delay="500">
+            We believe in the power of teamwork, discipline, and perseverance.
+            Our values include inclusivity, respect, and a commitment to
+            excellence in every aspect of our training and community-building
+            efforts. Join us as we build a stronger, healthier future
+            together.
+          </p>
+        </div>
 
-          <!-- TEAM -->
-          <div class="col-lg-6 col-md-12 mt-5" id="team">
-            <h3
-              class="text-center mb-4"
-              data-aos="fade-up"
-              data-aos-delay="600"
-            >
-              Meet Our Team
-            </h3>
-            <div class="row">
-              <!-- TRAINER 1 -->
-              <div
-                class="col-md-6 col-12 mb-4"
-                data-aos="fade-up"
-                data-aos-delay="700"
-              >
-                <div class="team-thumb">
-                  <img
-                    src="../public/images/team/team-image.jpg"
-                    class="img-fluid"
-                    alt="Trainer"
-                    data-aos="zoom-in"
-                    data-aos-delay="800"
-                  />
-                  <div class="team-info d-flex flex-column">
-                    <h3>Mary Yan</h3>
-                    <span>Yoga Instructor</span>
-                    <p>
-                      Mary specializes in yoga and mindfulness, helping members
-                      find balance and flexibility in their routines.
-                    </p>
-                    <ul class="social-icon mt-3">
-                      <li><a href="#" class="fa fa-twitter"></a></li>
-                      <li><a href="#" class="fa fa-instagram"></a></li>
-                    </ul>
-                  </div>
+        <!-- TEAM -->
+        <div class="col-lg-6 col-md-12 mt-5" id="team">
+          <h3 class="text-center mb-4" data-aos="fade-up" data-aos-delay="600">
+            Meet Our Team
+          </h3>
+          <div class="row">
+            <!-- TRAINER 1 -->
+            <div class="col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-delay="700">
+              <div class="team-thumb">
+                <img src="../public/images/team/team-image.jpg" class="img-fluid" alt="Trainer"
+                  data-aos="zoom-in" data-aos-delay="800" />
+                <div class="team-info d-flex flex-column">
+                  <h3>Mary Yan</h3>
+                  <span>Yoga Instructor</span>
+                  <p>
+                    Mary specializes in yoga and mindfulness, helping members
+                    find balance and flexibility in their routines.
+                  </p>
+                  <ul class="social-icon mt-3">
+                    <li><a href="#" class="fa fa-twitter"></a></li>
+                    <li><a href="#" class="fa fa-instagram"></a></li>
+                  </ul>
                 </div>
               </div>
+            </div>
 
-              <!-- TRAINER 2 -->
-              <div
-                class="col-md-6 col-12 mb-4"
-                data-aos="fade-up"
-                data-aos-delay="800"
-              >
-                <div class="team-thumb">
-                  <img
-                    src="../public/images/team/team-image01.jpg"
-                    class="img-fluid"
-                    alt="Trainer"
-                    data-aos="zoom-in"
-                    data-aos-delay="900"
-                  />
-                  <div class="team-info d-flex flex-column">
-                    <h3>Catherina</h3>
-                    <span>Body Trainer</span>
-                    <p>
-                      Catherina is an expert in strength training, helping
-                      individuals build muscle, endurance, and confidence.
-                    </p>
-                    <ul class="social-icon mt-3">
-                      <li><a href="#" class="fa fa-instagram"></a></li>
-                      <li><a href="#" class="fa fa-facebook"></a></li>
-                    </ul>
-                  </div>
+            <!-- TRAINER 2 -->
+            <div class="col-md-6 col-12 mb-4" data-aos="fade-up" data-aos-delay="800">
+              <div class="team-thumb">
+                <img src="../public/images/team/team-image01.jpg" class="img-fluid" alt="Trainer"
+                  data-aos="zoom-in" data-aos-delay="900" />
+                <div class="team-info d-flex flex-column">
+                  <h3>Catherina</h3>
+                  <span>Body Trainer</span>
+                  <p>
+                    Catherina is an expert in strength training, helping
+                    individuals build muscle, endurance, and confidence.
+                  </p>
+                  <ul class="social-icon mt-3">
+                    <li><a href="#" class="fa fa-instagram"></a></li>
+                    <li><a href="#" class="fa fa-facebook"></a></li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- VISION AND MISSION -->
-    <section class="vision-mission section" id="vision-mission">
-      <div class="container">
-        <div class="row">
-          <!-- VISION -->
-          <div
-            class="col-lg-6 col-md-12 mb-5"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <h2 class="text-center mb-4">Our Vision</h2>
-            <p>
-              Our vision is to inspire and empower individuals to achieve their
-              fitness goals, leading them to a healthier, happier life. We aim
-              to build a strong community where teamwork, perseverance, and
-              inclusivity are at the heart of everything we do. At AUS Sport
-              Club, we envision a future where everyone, regardless of their
-              background or experience, has the opportunity to thrive.
-            </p>
-          </div>
+  <!-- VISION AND MISSION -->
+  <section class="vision-mission section" id="vision-mission">
+    <div class="container">
+      <div class="row">
+        <!-- VISION -->
+        <div class="col-lg-6 col-md-12 mb-5" data-aos="fade-up" data-aos-delay="300">
+          <h2 class="text-center mb-4">Our Vision</h2>
+          <p>
+            Our vision is to inspire and empower individuals to achieve their
+            fitness goals, leading them to a healthier, happier life. We aim
+            to build a strong community where teamwork, perseverance, and
+            inclusivity are at the heart of everything we do. At AUS Sport
+            Club, we envision a future where everyone, regardless of their
+            background or experience, has the opportunity to thrive.
+          </p>
+        </div>
 
-          <!-- MISSION -->
-          <div
-            class="col-lg-6 col-md-12 mb-5"
-            data-aos="fade-up"
-            data-aos-delay="500"
-          >
-            <h2 class="text-center mb-4">Our Mission</h2>
-            <p>
-              Our mission is to create a supportive environment that motivates
-              individuals to reach their fitness potential. Through structured
-              programs, expert trainers, and a community-focused approach, we
-              aim to equip our members with the tools and knowledge they need to
-              succeed. We are committed to promoting well-being, encouraging
-              healthy habits, and fostering lifelong fitness journeys for all.
-            </p>
-          </div>
+        <!-- MISSION -->
+        <div class="col-lg-6 col-md-12 mb-5" data-aos="fade-up" data-aos-delay="500">
+          <h2 class="text-center mb-4">Our Mission</h2>
+          <p>
+            Our mission is to create a supportive environment that motivates
+            individuals to reach their fitness potential. Through structured
+            programs, expert trainers, and a community-focused approach, we
+            aim to equip our members with the tools and knowledge they need to
+            succeed. We are committed to promoting well-being, encouraging
+            healthy habits, and fostering lifelong fitness journeys for all.
+          </p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row align-items-center">
-          <!-- Left Section -->
-          <div class="ml-auto col-lg-4 col-md-5 text-center text-md-left">
-            <p class="copyright-text mb-2">
-              Copyright &copy; 2024 AUS Sport Club
-            </p>
-          </div>
-
-          <!-- Right Section -->
-          <div
-            class="d-flex flex-column flex-md-row justify-content-center mx-auto col-lg-5 col-md-7 col-12"
-          >
-            <p class="mx-md-4 mx-lg-5 mb-2 mb-md-0">
-              <i class="fas fa-envelope mr-2" style="color: #c60a11"></i>
-              <a href="#" style="color: #a47800; text-decoration: none"
-                >aussportclub@company.co</a
-              >
-            </p>
-            <p>
-              <i class="fa fa-phone mr-2" style="color: #c60a11"></i>
-              09 876 543 210
-            </p>
-          </div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Left Section -->
+        <div class="ml-auto col-lg-4 col-md-5 text-center text-md-left">
+          <p class="copyright-text mb-2">
+            Copyright &copy; 2024 AUS Sport Club
+          </p>
         </div>
 
-        <!-- Divider -->
-        <hr style="border-top: 1px solid #444; margin: 1.5rem 0" />
-
-        <!-- Social Links -->
-        <div class="row">
-          <div class="col-12 text-center">
-            <a href="#" class="mr-3" style="color: #f97316; font-size: 1.2rem">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="#" class="mr-3" style="color: #f97316; font-size: 1.2rem">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="mr-3" style="color: #f97316; font-size: 1.2rem">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" style="color: #f97316; font-size: 1.2rem">
-              <i class="fab fa-linkedin"></i>
-            </a>
-          </div>
+        <!-- Right Section -->
+        <div class="d-flex flex-column flex-md-row justify-content-center mx-auto col-lg-5 col-md-7 col-12">
+          <p class="mx-md-4 mx-lg-5 mb-2 mb-md-0">
+            <i class="fas fa-envelope mr-2" style="color: #c60a11"></i>
+            <a href="#" style="color: #a47800; text-decoration: none">aussportclub@company.co</a>
+          </p>
+          <p>
+            <i class="fa fa-phone mr-2" style="color: #c60a11"></i>
+            09 876 543 210
+          </p>
         </div>
       </div>
-    </footer>
 
-    <!-- AOS JS link -->
-    <script src="../public/libs/js/aos.js"></script>
+      <!-- Divider -->
+      <hr style="border-top: 1px solid #444; margin: 1.5rem 0" />
 
-    <!-- Bootstrap JS link -->
-    <script src="../public/libs/js/bootstrap.min.js"></script>
+      <!-- Social Links -->
+      <div class="row">
+        <div class="col-12 text-center">
+          <a href="#" class="mr-3" style="color: #f97316; font-size: 1.2rem">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="#" class="mr-3" style="color: #f97316; font-size: 1.2rem">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="mr-3" style="color: #f97316; font-size: 1.2rem">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" style="color: #f97316; font-size: 1.2rem">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    <!-- JQuery JS link -->
-    <script src="../public/libs/js/jquery-3.7.1.min.js"></script>
+  <!-- AOS JS link -->
+  <script src="../public/libs/js/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000
+    });
+  </script>
 
-    <!-- Smoothscroll JS link -->
-    <script src="../public/libs/js/smoothscroll.js"></script>
+  <!-- Bootstrap JS link -->
+  <script src="../public/libs/js/bootstrap.min.js"></script>
 
-    <!-- Custom JS link -->
-    <script src="../js/app.js"></script>
-  </body>
+  <!-- JQuery JS link -->
+  <script src="../public/libs/js/jquery-3.7.1.min.js"></script>
+
+  <!-- Smoothscroll JS link -->
+  <script src="../public/libs/js/smoothscroll.js"></script>
+
+  <!-- Custom JS link -->
+  <script src="../js/app.js"></script>
+</body>
+
 </html>
