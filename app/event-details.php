@@ -101,15 +101,14 @@
     </div>
   </section>
 
-
   <!-- EVENT DETAILS -->
   <section class="event-details section" id="event-details">
     <div class="container">
       <h2 class="section-title text-center" data-aos="fade-up">
-        Event Details
+        The Biggest Event
       </h2>
       <p class="section-subtitle text-center mb-5" data-aos="fade-up" data-aos-delay="100">
-        Get ready for an unforgettable experience at Sports Fiesta 2024.
+        Get ready for an unforgettable experience at Sports Fiesta 2025.
         Here’s everything you need to know.
       </p>
 
@@ -159,63 +158,73 @@
     </div>
   </section>
 
-  <!-- NEWS AND ANNOUNCEMENTS -->
-  <section class="news section" id="news">
+  <!-- UPCOMING EVENTS -->
+  <section class="upcoming-events-section" id="events">
     <div class="container">
-      <h2 class="section-title text-center" data-aos="fade-up">
-        Latest News & Announcements
-      </h2>
-      <p class="section-subtitle text-center mb-5" data-aos="fade-up" data-aos-delay="100">
-        Stay updated with the latest happenings and important announcements
-        for Sports Fiesta 2024.
+      <h2 class="section-heading text-center" data-aos="fade-up">Upcoming Events</h2>
+      <p class="section-description text-center mb-5" data-aos="fade-up" data-aos-delay="100">
+        Explore the exciting events lined up for Sports Fiesta 2024 and beyond.
       </p>
-      <div class="row">
-        <!-- News Item 1 -->
-        <div class="col-md-4 my-sm-2 my-0" data-aos="fade-up" data-aos-delay="200">
-          <div class="news-card">
-            <img src="../public/images/news/volunteers.png" alt="Volunteer Opportunities"
-              class="news-card-img" />
-            <div class="news-card-body">
-              <h5 class="news-card-title">Volunteer Opportunities</h5>
-              <p class="news-card-text">
-                Be part of the action! We're looking for energetic volunteers
-                to help bring Sports Fiesta 2024 to life. Gain valuable
-                experience and enjoy perks as a team member.
-              </p>
-              <a href="./event-details.html" class="btn custom-btn-sm">Learn More</a>
+      <div class="row g-4">
+        <!-- Event 1 -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+          <div class="event-box">
+            <div class="event-image-container">
+              <span class="event-status-tag upcoming">Upcoming</span>
+              <img src="../public/images/event/football1.jpg" alt="Soccer Championship"
+                class="event-thumbnail">
+            </div>
+            <div class="event-info">
+              <h5 class="event-heading">Soccer Championship</h5>
+              <div class="event-divider"></div>
+              <ul class="event-meta">
+                <li><strong>Date:</strong> March 10 2025</li>
+                <li><strong>Location:</strong> Soccer Arena, Downtown</li>
+                <li><strong>Sport:</strong> Soccer</li>
+                <li><strong>Age Group:</strong> Under 18</li>
+              </ul>
+              <a href="./register.html" class="action-button mt-3">Register Now</a>
             </div>
           </div>
         </div>
-        <!-- News Item 2 -->
-        <div class="col-md-4 my-sm-2 my-0" data-aos="fade-up" data-aos-delay="400">
-          <div class="news-card">
-            <img src="../public/images/news/discounts.png" alt="Early Bird Discounts"
-              class="news-card-img" />
-            <div class="news-card-body">
-              <h5 class="news-card-title">Early Bird Discounts</h5>
-              <p class="news-card-text">
-                Register before <strong>10th January 2025</strong> and enjoy
-                exclusive discounts on entry tickets. Don't miss this chance
-                to save big while joining the fun. So, What are you waiting
-                for?
-              </p>
-              <a href="./register.html" class="btn custom-btn-sm">Register Now</a>
+        <!-- Event 2 -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
+          <div class="event-box">
+            <div class="event-image-container">
+              <span class="event-status-tag past">Past</span>
+              <img src="../public/images/event/basketball1.png" alt="Basketball League"
+                class="event-thumbnail">
+            </div>
+            <div class="event-info">
+              <h5 class="event-heading">Basketball League</h5>
+              <div class="event-divider"></div>
+              <ul class="event-meta">
+                <li><strong>Date:</strong> March 15 2025</li>
+                <li><strong>Location:</strong> Central Court</li>
+                <li><strong>Sport:</strong> Basketball</li>
+                <li><strong>Age Group:</strong> Open to All</li>
+              </ul>
+              <a href="./register.html" class="action-button mt-3">Register Now</a>
             </div>
           </div>
         </div>
-        <!-- News Item 3 -->
-        <div class="col-md-4 my-sm-2 my-0" data-aos="fade-up" data-aos-delay="600">
-          <div class="news-card">
-            <img src="../public/images/news/special_guest.png" alt="Special Guest Announcement"
-              class="news-card-img" />
-            <div class="news-card-body">
-              <h5 class="news-card-title">Special Guest Announcement</h5>
-              <p class="news-card-text">
-                We are thrilled to announce that <strong>Alex Morgan</strong>,
-                international soccer star, will be joining us as a guest of
-                honor. Don't miss this incredible opportunity!
-              </p>
-              <a href="#" class="btn custom-btn-sm">Read More</a>
+        <!-- Event 3 -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="600">
+          <div class="event-box">
+            <div class="event-image-container">
+              <span class="event-status-tag upcoming">Upcoming</span>
+              <img src="../public/images/event/marathon1.png" alt="Marathon Run" class="event-thumbnail">
+            </div>
+            <div class="event-info">
+              <h5 class="event-heading">Marathon Run</h5>
+              <div class="event-divider"></div>
+              <ul class="event-meta">
+                <li><strong>Date:</strong> March 20 2025</li>
+                <li><strong>Location:</strong> City Park</li>
+                <li><strong>Sport:</strong> Running</li>
+                <li><strong>Age Group:</strong> All Ages</li>
+              </ul>
+              <a href="./register.html" class="action-button mt-3">Register Now</a>
             </div>
           </div>
         </div>

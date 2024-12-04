@@ -24,30 +24,35 @@
     <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
+            <!-- Navbar Brand -->
+            <a class="navbar-brand" href="./home.php">AUS Sport Club</a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            <!-- Navbar Toggle Button (Burger Menu) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Left Side Links -->
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a href="home.php" class="nav-link smoothScroll">Home</a>
+                        <a href="./home.php" class="nav-link smoothScroll">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="event-details.php" class="nav-link smoothScroll">Events</a>
+                        <a href="./event-details.php" class="nav-link smoothScroll">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a href="news.php" class="nav-link smoothScroll">News & Announcements</a>
+                        <a href="./news.php" class="nav-link smoothScroll">News & Announcements</a>
                     </li>
                     <li class="nav-item">
-                        <a href="about-us.php" class="nav-link smoothScroll">About Us</a>
+                        <a href="./about-us.php" class="nav-link smoothScroll">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a href="contact-us.php" class="nav-link smoothScroll">Contact</a>
+                        <a href="./contact-us.php" class="nav-link smoothScroll">Contact</a>
                     </li>
+
                 </ul>
 
                 <ul class="navbar-nav ml-auto d-flex align-items-center">
@@ -57,11 +62,16 @@
                     <li class="nav-item">
                         <a href="./register.php" class="nav-link">Register</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="./profile.php" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             <img src="../public/images/auth/profile_icon.png" style="width: 30px" alt="Profile"
                                 class="profile-pic" />
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="./admin/dashboard.html">Admin</a>
+                            <a class="dropdown-item" href="./profile.html">Member</a>
+                        </div>
                     </li>
                 </ul>
             </div>

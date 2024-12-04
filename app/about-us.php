@@ -26,7 +26,7 @@
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <!-- Navbar Brand -->
-      <a class="navbar-brand" href="./home.html">AUS Sport Club</a>
+      <a class="navbar-brand" href="./home.php">AUS Sport Club</a>
 
       <!-- Navbar Toggle Button (Burger Menu) -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -42,26 +42,26 @@
             <a href="./home.php" class="nav-link smoothScroll">Home</a>
           </li>
           <li class="nav-item">
-            <a href="./event-details.html" class="nav-link smoothScroll">Events</a>
+            <a href="./event-details.php" class="nav-link smoothScroll">Events</a>
           </li>
           <li class="nav-item">
-            <a href="news.php" class="nav-link smoothScroll">News & Announcements</a>
+            <a href="./news.php" class="nav-link smoothScroll">News & Announcements</a>
           </li>
           <li class="nav-item">
-            <a href="about-us.php" class="nav-link smoothScroll">About Us</a>
+            <a href="./about-us.php" class="nav-link smoothScroll">About Us</a>
           </li>
           <li class="nav-item">
-            <a href="contact-us.html" class="nav-link smoothScroll">Contact</a>
+            <a href="./contact-us.php" class="nav-link smoothScroll">Contact</a>
           </li>
 
         </ul>
 
         <ul class="navbar-nav ml-auto d-flex align-items-center">
           <li class="nav-item">
-            <a href="./login.html" class="nav-link">Login</a>
+            <a href="./login.php" class="nav-link">Login</a>
           </li>
           <li class="nav-item">
-            <a href="./register.html" class="nav-link">Register</a>
+            <a href="./register.php" class="nav-link">Register</a>
           </li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true"
