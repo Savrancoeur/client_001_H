@@ -7,7 +7,7 @@ $dbhost = "localhost";
 // database user name
 $dbuser = "root";
 // database password
-$dbpass = "mydbserver2025";
+$dbpass = "";
 // database name
 $dbname = "aus";
 
@@ -18,5 +18,3 @@ try {
 } catch (PDOException $e) {
     echo "Error Found : " . $e->getMessage();
 }
-
-?>

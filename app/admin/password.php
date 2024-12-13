@@ -1,5 +1,5 @@
 <?php
 
-echo md5("MgMg1234!@#$");
+echo md5("admin1234");
 
 ?>

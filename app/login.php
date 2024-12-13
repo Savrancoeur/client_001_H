@@ -1,3 +1,22 @@
+<?php
+
+// to show error codes
+ini_set("display_errors", 1);
+
+// call dbconnection file to use
+require_once("dbconnect.php");
+// call sessionconfig file to use its methods
+require_once("sessionconfig.php");
+
+$errormessage = "";
+
+if(verifysession("login-error")){
+    $errormessage = getsession("login-error");
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +37,7 @@
   <!-- Custom CSS link -->
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/login.css" />
+  <link rel="stylesheet" href="../css/toast.css" />
 </head>
 
 <body>
@@ -65,6 +85,26 @@
     </div>
   </div>
 
+  <?php if($errormessage != null) {?>
+      <div class="toasts actives">
+          <div class="toast-contents">
+              <i class="fas fa-times bg-danger check"></i>
+
+              <div class="message">
+                  <span class="text text-1">Failed</span>
+                  <span class="text text-2"><?php echo $errormessage ?></span>
+              </div>
+          </div>
+          <i class="fas fa-times closes"></i>
+
+          <div class="progress actives"></div>
+      </div>
+      <?php
+      unset($_SESSION['login-error']);
+      $errormessage = '';
+  }
+  ?>
+
   <!-- AOS JS link -->
   <script src="../public/libs/js/aos.js"></script>
 
@@ -79,6 +119,7 @@
 
   <!-- Custom JS link -->
   <script src="../js/app.js"></script>
+  <script src="../js/toast.js"></script>
 </body>
 
 </html>

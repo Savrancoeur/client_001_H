@@ -1,3 +1,44 @@
+<?php
+
+// to show error codes
+ini_set("display_errors", 1);
+
+// call dbconnection file to use
+require_once("dbconnect.php");
+// call sessionconfig file to use its methods
+require_once("sessionconfig.php");
+
+$showevents = null;
+
+function getevents()
+{
+    try {
+        $conn = $GLOBALS['conn'];
+        $stmt = $conn->prepare("SELECT * FROM events WHERE status=? ORDER BY id DESC");
+        $stmt->execute(['upcoming']);
+        return $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+function getsportname($id)
+{
+  try {
+    $conn = $GLOBALS['conn'];
+    $stmt = $conn->prepare("SELECT name FROM sports WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch();
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+  }
+}
+
+$showevents = getevents();
+// var_dump($showevents);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,10 +78,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a href="./home.php" class="nav-link smoothScroll">Home</a>
+                        <a href="home.php" class="nav-link smoothScroll">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="event-details.php" class="nav-link smoothScroll">Events</a>
+                        <a href="events.php" class="nav-link smoothScroll">Events</a>
                     </li>
                     <li class="nav-item">
                         <a href="news.php" class="nav-link smoothScroll">News & Announcements</a>
@@ -54,18 +95,27 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto d-flex align-items-center">
-                    <li class="nav-item">
-                        <a href="./login.php" class="nav-link">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./register.php" class="nav-link">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./profile.php" class="nav-link">
-                            <img src="../public/images/auth/profile_icon.png" style="width: 30px" alt="Profile"
-                                class="profile-pic" />
-                        </a>
-                    </li>
+                    <?php if (verifysession('email')) { ?>
+                        <li class="nav-item">
+                            <a href="./logout.php" class="nav-link">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./profile.php" class="nav-link">
+                                <img
+                                    src="../public/images/auth/profile_icon.png"
+                                    style="width: 30px"
+                                    alt="Profile"
+                                    class="profile-pic" />
+                            </a>
+                        </li>
+                    <?php } else { ?>
+                        <li class="nav-item">
+                            <a href="./login.php" class="nav-link">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./register.php" class="nav-link">Register</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
@@ -94,7 +144,7 @@
                             <p class="text-light">
                                 Join with us and feel the best moments of your life!
                             </p>
-                            <a href="#" class="btn custom-btn bg-color mt-3 hover-grow">
+                            <a href="./register.php" class="btn custom-btn bg-color mt-3 hover-grow">
                                 Become a member today
                             </a>
                         </div>
@@ -122,68 +172,35 @@
                 Explore the exciting events lined up for Sports Fiesta 2024 and beyond.
             </p>
             <div class="row g-4">
-                <!-- Event 1 -->
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="event-box">
-                        <div class="event-image-container">
-                            <span class="event-status-tag upcoming">Upcoming</span>
-                            <img src="../public/images/event/football1.jpg" alt="Soccer Championship"
-                                class="event-thumbnail">
-                        </div>
-                        <div class="event-info">
-                            <h5 class="event-heading">Soccer Championship</h5>
-                            <div class="event-divider"></div>
-                            <ul class="event-meta">
-                                <li><strong>Date:</strong> March 10 2025</li>
-                                <li><strong>Location:</strong> Soccer Arena, Downtown</li>
-                                <li><strong>Sport:</strong> Soccer</li>
-                                <li><strong>Age Group:</strong> Under 18</li>
-                            </ul>
-                            <a href="./register.html" class="action-button mt-3">Register Now</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Event 2 -->
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="event-box">
-                        <div class="event-image-container">
-                            <span class="event-status-tag past">Past</span>
-                            <img src="../public/images/event/basketball1.png" alt="Basketball League"
-                                class="event-thumbnail">
-                        </div>
-                        <div class="event-info">
-                            <h5 class="event-heading">Basketball League</h5>
-                            <div class="event-divider"></div>
-                            <ul class="event-meta">
-                                <li><strong>Date:</strong> March 15 2025</li>
-                                <li><strong>Location:</strong> Central Court</li>
-                                <li><strong>Sport:</strong> Basketball</li>
-                                <li><strong>Age Group:</strong> Open to All</li>
-                            </ul>
-                            <a href="./register.html" class="action-button mt-3">Register Now</a>
+                <?php $delay = 400; ?>
+                <?php foreach ($showevents as $showevent) { ?>
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="<?php echo $delay ?>">
+                        <div class="event-box">
+                            <div class="event-image-container">
+                                <span class="event-status-tag upcoming"><?php echo ucwords($showevent['status']) ?></span>
+                                <img src="../<?php echo $showevent['image'] ?>" alt="<?php echo ucwords($showevent['name']) ?>"
+                                    class="event-thumbnail">
+                            </div>
+                            <div class="event-info">
+                                <h5 class="event-heading"><?php echo ucwords($showevent['name']) ?></h5>
+                                <div class="event-divider"></div>
+                                <ul class="event-meta">
+                                    <li><strong>Date:</strong> <?php echo date("F j, Y", strtotime($showevent['date'])); ?></li>
+                                    <li><strong>Location:</strong> <?php echo ucwords($showevent['location']) ?></li>
+                                    <li><strong>Sport:</strong> <?php echo ucwords(getsportname($showevent['sports_id'])['name']) ?></li>
+                                    <li><strong>Age Group:</strong> <?php echo ucwords($showevent['agegroup']) ?></li>
+                                </ul>
+                                <a href="event-details.php?eventid=<?php echo $showevent['id'] ?>" class="action-button mt-3">View Detail</a>
+                                <?php if (verifysession('email')) { ?>
+                                    <a href="profile.php?eventid=<?php echo $showevent['id'] ?>" class="action-button mt-3">Register Now</a>
+                                <?php } else { ?>
+                                    <a href="javascript:void(0);" class="action-button mt-3" style="background-color: #c60a11">Register Now</a>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Event 3 -->
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="event-box">
-                        <div class="event-image-container">
-                            <span class="event-status-tag upcoming">Upcoming</span>
-                            <img src="../public/images/event/marathon1.png" alt="Marathon Run" class="event-thumbnail">
-                        </div>
-                        <div class="event-info">
-                            <h5 class="event-heading">Marathon Run</h5>
-                            <div class="event-divider"></div>
-                            <ul class="event-meta">
-                                <li><strong>Date:</strong> March 20 2025</li>
-                                <li><strong>Location:</strong> City Park</li>
-                                <li><strong>Sport:</strong> Running</li>
-                                <li><strong>Age Group:</strong> All Ages</li>
-                            </ul>
-                            <a href="./register.html" class="action-button mt-3">Register Now</a>
-                        </div>
-                    </div>
-                </div>
+                    <?php $delay += 50; ?>
+                <?php } ?>
             </div>
         </div>
     </section>

@@ -43,6 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['register'])) {
                     setsession('email', $bindemail);
                     setsession('password', $bindpassword);
                     setsession('register-success', "Your registraion is success");
+
+                    $sql = "UPDATE users SET status=1 WHERE email=?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute([$getemail]);
+
                     //redirect to homepage
                     redirectto('home.php');
                 } else {

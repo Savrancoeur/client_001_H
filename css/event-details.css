@@ -219,7 +219,7 @@
 
 .detail-text {
   font-size: 1rem;
-  color: #cfcfcf;
+  color: yellow;
   z-index: 1;
   position: relative;
 }

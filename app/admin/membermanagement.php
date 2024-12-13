@@ -457,10 +457,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["view"])){
                                                     </thead>
                                                     <tbody >
                                                     <?php foreach ($registrations as $registration){ ?>
-                                                        <td><?php echo $registration['id'] ?></td>
-                                                        <td><?php echo geteventname($registration['events_id'])['name'] ?></td>
-                                                        <td><?php echo $registration['date'] ?></td>
-                                                        <td><?php echo $registration['count'] ?></td>
+                                                        <tr>
+                                                            <td><?php echo $registration['id'] ?></td>
+                                                            <td><?php echo geteventname($registration['events_id'])['name'] ?></td>
+                                                            <td><?php echo $registration['date'] ?></td>
+                                                            <td><?php echo $registration['count'] ?></td>
+                                                        </tr>
                                                     <?php } ?>
                                                     </tbody>
                                                 </table>

@@ -1,235 +1,167 @@
+<?php
+
+// to show error codes
+ini_set("display_errors", 1);
+
+// call dbconnection file to use
+require_once("dbconnect.php");
+// call sessionconfig file to use its methods
+require_once("sessionconfig.php");
+
+$event = null;
+
+if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['eventid'])) {
+  setsession('eventid', $_GET['eventid']);
+}
+
+if (!verifysession('eventid')) {
+  redirectto('events.php');
+}
+
+function getevent($eventid)
+{
+  try {
+    $conn = $GLOBALS['conn'];
+    $stmt = $conn->prepare("SELECT * FROM events WHERE id=?");
+    $stmt->execute([$eventid]);
+    return $stmt->fetch();
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+  }
+}
+
+$event = getevent($_SESSION['eventid']);
+//var_dump($event);
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <title>AUS Sport Club</title>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Bootstrap CSS link -->
-  <link rel="stylesheet" href="../public/libs/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../public/libs/css/bootstrap.min.css">
 
   <!-- Font Awesome CSS link -->
-  <link rel="stylesheet" href="../public/libs/font-awesome-5/css/fontawesome-all.min.css" />
+  <link
+    rel="stylesheet"
+    href="../public/libs/font-awesome-5/css/fontawesome-all.min.css" />
   <!-- AOS CSS Link -->
-  <link rel="stylesheet" href="../public/libs/css/aos.css" />
+  <link rel="stylesheet" href="../public/libs/css/aos.css">
 
   <!-- Custom CSS link -->
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/event-details.css" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/event-details.css">
+
 </head>
 
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
   <!-- MENU BAR -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <!-- Navbar Brand -->
       <a class="navbar-brand" href="./home.php">AUS Sport Club</a>
 
-      <!-- Navbar Toggle Button (Burger Menu) -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Navbar Links -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <!-- Left Side Links -->
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a href="./home.php" class="nav-link smoothScroll">Home</a>
+            <a href="home.php" class="nav-link smoothScroll">Home</a>
           </li>
           <li class="nav-item">
-            <a href="./event-details.php" class="nav-link smoothScroll">Events</a>
+            <a href="events.php" class="nav-link smoothScroll">Events</a>
           </li>
           <li class="nav-item">
-            <a href="./news.php" class="nav-link smoothScroll">News & Announcements</a>
+            <a href="news.php" class="nav-link smoothScroll">News & Announcements</a>
           </li>
           <li class="nav-item">
-            <a href="./about-us.php" class="nav-link smoothScroll">About Us</a>
+            <a href="about-us.php" class="nav-link smoothScroll">About Us</a>
           </li>
           <li class="nav-item">
-            <a href="./contact-us.php" class="nav-link smoothScroll">Contact</a>
+            <a href="contact-us.php" class="nav-link smoothScroll">Contact</a>
           </li>
-
         </ul>
 
         <ul class="navbar-nav ml-auto d-flex align-items-center">
-          <li class="nav-item">
-            <a href="./login.php" class="nav-link">Login</a>
-          </li>
-          <li class="nav-item">
-            <a href="./register.php" class="nav-link">Register</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              <img src="../public/images/auth/profile_icon.png" style="width: 30px" alt="Profile"
-                class="profile-pic" />
-            </a>
-            <div class="dropdown-menu" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="./admin/dashboard.html">Admin</a>
-              <a class="dropdown-item" href="./profile.html">Member</a>
-            </div>
-          </li>
+          <?php if (verifysession('email')) { ?>
+            <li class="nav-item">
+              <a href="./logout.php" class="nav-link">Logout</a>
+            </li>
+            <li class="nav-item">
+              <a href="./profile.php" class="nav-link">
+                <img
+                  src="../public/images/auth/profile_icon.png"
+                  style="width: 30px"
+                  alt="Profile"
+                  class="profile-pic" />
+              </a>
+            </li>
+          <?php } else { ?>
+            <li class="nav-item">
+              <a href="./login.php" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="./register.php" class="nav-link">Register</a>
+            </li>
+          <?php } ?>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
-    <div class="bg-overlay"></div>
-    <div class="container">
+  <section id="filter" class="filter-section py-5">
+    <div class="container py-5 my-5">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto col-12">
-          <div class="hero-text mt-5 text-center">
-            <h6 data-aos="fade-up" data-aos-delay="300">
-              New way to build a healthy lifestyle!
-            </h6>
-            <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">
-              Upgrade your body at Gymso Fitness
-            </h1>
-            <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Get
-              started</a>
-            <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up"
-              data-aos-delay="700">Learn more</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- EVENT DETAILS -->
-  <section class="event-details section" id="event-details">
-    <div class="container">
-      <h2 class="section-title text-center" data-aos="fade-up">
-        The Biggest Event
-      </h2>
-      <p class="section-subtitle text-center mb-5" data-aos="fade-up" data-aos-delay="100">
-        Get ready for an unforgettable experience at Sports Fiesta 2025.
-        Here’s everything you need to know.
-      </p>
+        <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-6 col-md-6 col-12">
+          <h2 class="mb-3 text-white" data-aos="fade-up"><?php echo $event['name'] ?></h2>
+          <p data-aos="fade-up" data-aos-delay="200"><?php echo $event['description'] ?></p>
 
-      <div class="details-grid">
-        <!-- Event Date -->
-        <div class="detail-item" data-aos="zoom-in" data-aos-delay="200">
-          <div class="detail-icon">
-            <i class="fas fa-calendar-alt"></i>
+          <div>
+
+            <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Event Date & Time</h2>
+
+            <p data-aos="fade-up" data-aos-delay="700">Date : <?php echo date("F j, Y", strtotime($event['date'])); ?></p>
+
+            <p data-aos="fade-up" data-aos-delay="800">Time : <?php echo $event['time'] ?></p>
+            <p data-aos="fade-up" data-aos-delay="900">Last Registraion : <?php echo date("F j, Y", strtotime($event['duedate'])); ?></p>
           </div>
-          <h4 class="detail-title">Event Date</h4>
-          <p class="detail-text">March 15 - March 20, 2024</p>
+
+          <div>
+            <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Limitation</h2>
+
+            <p data-aos="fade-up" data-aos-delay="700">Age Limit : <?php echo ucwords($event['agegroup']) ?></p>
+
+            <p data-aos="fade-up" data-aos-delay="800">Participant Limit : <?php echo $event['participantslimit'] ?> People</p>
+          </div>
+
+          <?php if (verifysession('email')) { ?>
+            <a href="profile.php?eventid=<?php echo $event['id'] ?>" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-toggle="modal" data-target="#membershipForm">Registraion Link</a>
+          <?php } else { ?>
+            <a href="javascript:void(0);" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-toggle="modal" data-target="#membershipForm">Registraion Link</a>
+          <?php } ?>
         </div>
 
-        <!-- Location -->
-        <div class="detail-item" data-aos="zoom-in" data-aos-delay="300">
-          <div class="detail-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <h4 class="detail-title">Location</h4>
-          <p class="detail-text">National Sports Arena, City Center</p>
+        <div class="col-lg-6 col-md-6 col-12">
+          <img src="./../public/images/event/football1.jpg" style="width: 100%; height: 100%;object-fit: cover" />
         </div>
 
-        <!-- Participants -->
-        <div class="detail-item" data-aos="zoom-in" data-aos-delay="400">
-          <div class="detail-icon">
-            <i class="fas fa-users"></i>
-          </div>
-          <h4 class="detail-title">Participants</h4>
-          <p class="detail-text">
-            Over 5,000 athletes from 50+ sports categories
-          </p>
+        <div>
         </div>
-
-        <!-- Registration Deadline -->
-        <div class="detail-item" data-aos="zoom-in" data-aos-delay="500">
-          <div class="detail-icon">
-            <i class="fas fa-clock"></i>
-          </div>
-          <h4 class="detail-title">Registration Deadline</h4>
-          <p class="detail-text">February 28, 2024</p>
-        </div>
-      </div>
-
-      <div class="cta text-center mt-5" data-aos="fade-up" data-aos-delay="600">
-        <a href="#" class="btn custom-btn-lg">Register Now</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- UPCOMING EVENTS -->
-  <section class="upcoming-events-section" id="events">
-    <div class="container">
-      <h2 class="section-heading text-center" data-aos="fade-up">Upcoming Events</h2>
-      <p class="section-description text-center mb-5" data-aos="fade-up" data-aos-delay="100">
-        Explore the exciting events lined up for Sports Fiesta 2024 and beyond.
-      </p>
-      <div class="row g-4">
-        <!-- Event 1 -->
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-          <div class="event-box">
-            <div class="event-image-container">
-              <span class="event-status-tag upcoming">Upcoming</span>
-              <img src="../public/images/event/football1.jpg" alt="Soccer Championship"
-                class="event-thumbnail">
-            </div>
-            <div class="event-info">
-              <h5 class="event-heading">Soccer Championship</h5>
-              <div class="event-divider"></div>
-              <ul class="event-meta">
-                <li><strong>Date:</strong> March 10 2025</li>
-                <li><strong>Location:</strong> Soccer Arena, Downtown</li>
-                <li><strong>Sport:</strong> Soccer</li>
-                <li><strong>Age Group:</strong> Under 18</li>
-              </ul>
-              <a href="./register.html" class="action-button mt-3">Register Now</a>
-            </div>
-          </div>
-        </div>
-        <!-- Event 2 -->
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
-          <div class="event-box">
-            <div class="event-image-container">
-              <span class="event-status-tag past">Past</span>
-              <img src="../public/images/event/basketball1.png" alt="Basketball League"
-                class="event-thumbnail">
-            </div>
-            <div class="event-info">
-              <h5 class="event-heading">Basketball League</h5>
-              <div class="event-divider"></div>
-              <ul class="event-meta">
-                <li><strong>Date:</strong> March 15 2025</li>
-                <li><strong>Location:</strong> Central Court</li>
-                <li><strong>Sport:</strong> Basketball</li>
-                <li><strong>Age Group:</strong> Open to All</li>
-              </ul>
-              <a href="./register.html" class="action-button mt-3">Register Now</a>
-            </div>
-          </div>
-        </div>
-        <!-- Event 3 -->
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="600">
-          <div class="event-box">
-            <div class="event-image-container">
-              <span class="event-status-tag upcoming">Upcoming</span>
-              <img src="../public/images/event/marathon1.png" alt="Marathon Run" class="event-thumbnail">
-            </div>
-            <div class="event-info">
-              <h5 class="event-heading">Marathon Run</h5>
-              <div class="event-divider"></div>
-              <ul class="event-meta">
-                <li><strong>Date:</strong> March 20 2025</li>
-                <li><strong>Location:</strong> City Park</li>
-                <li><strong>Sport:</strong> Running</li>
-                <li><strong>Age Group:</strong> All Ages</li>
-              </ul>
-              <a href="./register.html" class="action-button mt-3">Register Now</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- FOOTER -->
@@ -244,7 +176,8 @@
         </div>
 
         <!-- Right Section -->
-        <div class="d-flex flex-column flex-md-row justify-content-center mx-auto col-lg-5 col-md-7 col-12">
+        <div
+          class="d-flex flex-column flex-md-row justify-content-center mx-auto col-lg-5 col-md-7 col-12">
           <p class="mx-md-4 mx-lg-5 mb-2 mb-md-0">
             <i class="fas fa-envelope mr-2" style="color: #c60a11"></i>
             <a href="#" style="color: #a47800; text-decoration: none">aussportclub@company.co</a>
@@ -279,13 +212,48 @@
     </div>
   </footer>
 
+  <!-- Modal -->
+  <div class="modal fade" id="membershipForm" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h2 class="modal-title" id="membershipFormLabel">Membership Form</h2>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form class="membership-form webform" role="form">
+            <input type="text" class="form-control" name="cf-name" placeholder="John Doe">
+
+            <input type="email" class="form-control" name="cf-email" placeholder="Johndoe@gmail.com">
+
+            <input type="tel" class="form-control" name="cf-phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+
+            <textarea class="form-control" rows="3" name="cf-message" placeholder="Additional Message"></textarea>
+
+            <button type="submit" class="form-control" id="submit-button" name="submit">Submit Button</button>
+
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="signup-agree">
+              <label class="custom-control-label text-small text-muted" for="signup-agree">I agree to the <a href="#">Terms &amp;Conditions</a>
+              </label>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer"></div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- AOS JS link -->
   <script src="../public/libs/js/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000
-    });
-  </script>
 
   <!-- Bootstrap JS link -->
   <script src="../public/libs/js/bootstrap.min.js"></script>
